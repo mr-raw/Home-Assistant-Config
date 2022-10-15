@@ -21,6 +21,7 @@ zigbee2mqtt/
 !**/scenes
 !**/script
 !**/themes
+!mainpage.png
 
 secrets.yaml
 known_devices.yaml
