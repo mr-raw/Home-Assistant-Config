@@ -1,6 +1,6 @@
 # Welcome to my Home Assistant Config
 
-[[The Main Page](/Home Assistant Main Page.png)]
+[[The Main Page](/mainpage.png)]
 
 HACS components:
 
