@@ -1,0 +1,13 @@
+- name: Gjester
+  icon: "mdi:party-popper"
+  entities:
+    light.stua:
+      state: "on"
+    light.spisestue:
+      state: "on"
+    light.kjokken:
+      state: "on"
+      brightness: 127
+    light.gang:
+      state: "on"
+      brightness: 127

@@ -1,0 +1,14 @@
+varmepumpe_forbruk:
+  name: Strømforbruk varmepumpe
+  source: sensor.vennolumsvegen_82_daily_energy
+  cycle: daily
+
+billader_forbruk:
+  name: Strømforbruk billader
+  source: sensor.vennolumsvegen_82_lifetime_energy
+  cycle: daily
+  
+  
+#vaskemaskin_forbruk:
+#  name: Strømforbruk vaskemaskin
+#  source: sensor.vennolumsveg

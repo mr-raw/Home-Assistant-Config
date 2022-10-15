@@ -1,0 +1,48 @@
+title: Battery Status
+icon: mdi:battery-charging-90
+cards:
+  - type: custom:battery-state-card
+    title: Z-Wave-enheter
+    entities:
+      - entity: sensor.strips_mazw_battery_level
+        name: "Dørsensor veranda"
+      - entity: sensor.multisensor_6_battery_level
+        name: "Multisensor gang nede"
+      - entity: sensor.soft_remote_battery_level
+        name: "Z-Wave fjernkontroll #1"
+      - entity: sensor.octan_remote_control_battery_level
+        name: "Z-Wave fjernkontroll #2"
+
+  - type: custom:battery-state-card
+    title: Philips Hue-enheter
+    entities:
+      - entity: sensor.hue_dimmer_kjokken_battery_level
+        name: "Hue dimmer kjøkken"
+      - entity: sensor.hue_dimmer_kontor_battery_level
+        name: "Hue dimmer kontor"
+      - entity: sensor.hue_dimmer_trapp_battery_level
+        name: "Hue dimmer trapp"
+      - entity: sensor.hue_dimmer_switch_1_battery_level
+        name: "Hue dimmer stue"
+      - entity: sensor.hue_dimmer_switch_1_battery_level_2
+        name: "Hue dimmer spisestue"
+      - entity: sensor.hue_dimmer_switch_1_battery_level_3
+        name: "Hue dimmer soverom"
+
+  - type: custom:battery-state-card
+    title: Netatmo-enheter
+    entities:
+      - entity: sensor.netatmo_vennolumsvegen_82_inne_veranda_temperatur_og_fuktighet_battery_percent
+        name: "Temperatursensor veranda"
+      - entity: sensor.netatmo_vennolumsvegen_82_inne_soverom_temperatur_og_fuktighet_battery_percent
+        name: "Temperatursensor soverom"
+
+  - type: "custom:battery-state-card"
+    title: Røykvarslere
+    entities:
+      - entity: sensor.smoke_detector_1_battery
+        name: "Røykvarsler 1"
+      - entity: sensor.smoke_detector_2_battery
+        name: "Røykvarsler 2"
+      - entity: sensor.siren_1_battery
+        name: "Sirene 1"

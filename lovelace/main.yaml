@@ -1,0 +1,401 @@
+title: Main
+icon: mdi:home
+cards:
+  - type: vertical-stack # Stack disse for at de alltid skal være over hverandre. Lettere å lese temp/fukt
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: picture-entity
+            show_name: false
+            image: /local/img/me.jpg
+            state_filter:
+              not_home: grayscale(100%)
+            entity: person.erik_raae
+          - type: picture-entity
+            show_name: false
+            image: /local/img/jorgen.jpg
+            state_filter:
+              not_home: grayscale(100%)
+            entity: person.jorgen
+          - type: picture-entity
+            show_name: false
+            image: /local/img/merc.png
+            state_filter:
+              not_home: grayscale(100%)
+            entity: person.mercedes
+      - type: horizontal-stack
+        cards:
+          - type: glance
+            entities:
+              - entity: sensor.temperatur_gran
+                name: "Gran"
+              - entity: sensor.netatmo_vennolumsvegen_82_inne_veranda_temperatur_og_fuktighet_temperature
+                name: "Veranda"
+              - entity: sensor.vennolumsvegen_82_outside_temperature
+                name: "VP Ute"
+              - entity: sensor.vennolumsvegen_82_inside_temperature
+                name: "VP inne"
+              - entity: sensor.smart_implant_air_temperature_7
+                name: "Garasje"
+      - type: glance
+        entities:
+          - entity: sensor.netatmo_vennolumsvegen_82_inne_temperature
+            name: "Kjøkken"
+          - entity: sensor.netatmo_vennolumsvegen_82_inne_soverom_temperatur_og_fuktighet_temperature
+            name: "Soverom"
+          - entity: sensor.temp_sensor_1_temperature
+            name: "Kjøleskap"
+          - entity: sensor.multisensor_6_air_temperature
+            name: "Gang"
+          - entity: sensor.temp_sensor_vaskerom_temperature
+            name: "Vaskerom"
+      - type: glance
+        entities:
+          - entity: sensor.netatmo_vennolumsvegen_82_inne_humidity
+            name: "Kjøkken"
+          - entity: sensor.netatmo_vennolumsvegen_82_inne_soverom_temperatur_og_fuktighet_humidity
+            name: "Soverom"
+          - entity: sensor.temp_sensor_1_humidity
+            name: "Kjøleskap"
+          - entity: sensor.multisensor_6_humidity
+            name: "Gang"
+          - entity: sensor.temp_sensor_vaskerom_humidity
+            name: "Vaskerom"
+
+  - type: vertical-stack
+    cards:
+      - type: weather-forecast
+        entity: weather.vennolumsvegen_82
+        show_forecast: true
+        secondary_info_attribute: precipitation
+      - type: "custom:digital-clock"
+        dateFormat:
+          weekday: "short"
+          day: "2-digit"
+          month: "short"
+        timeFormat:
+          hour: "2-digit"
+          minute: "2-digit"
+          second: "2-digit"
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            entity: sensor.netatmo_vennolumsvegen_82_inne_co2
+            needle: true
+            name: "CO2 kjøkken"
+            min: 400
+            max: 5000
+            severity:
+              green: 400
+              yellow: 1000
+              red: 2000
+          - type: gauge
+            entity: sensor.netatmo_vennolumsvegen_82_inne_soverom_temperatur_og_fuktighet_co2
+            needle: true
+            name: "CO2 soverom"
+            min: 400
+            max: 5000
+            severity:
+              green: 400
+              yellow: 1000
+              red: 2000
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            entity: sensor.power_vennolumsvegen_82
+            needle: true
+            name: "Sanntidsforbruk"
+            min: 0
+            max: 10000
+            severity:
+              green: 0
+              yellow: 3000
+              red: 5000
+          - type: gauge
+            entity: sensor.electricity_price_vennolumsvegen_82
+            needle: true
+            name: "Strømpris"
+            min: 0.01
+            max: 2
+            severity:
+              green: 0.01
+              yellow: 0.5
+              red: 1.0
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: button
+            entity: light.soverom
+          - type: button
+            entity: light.spisestue
+          - type: button
+            entity: light.kontor
+          - type: button
+            entity: light.kjokken
+      - type: horizontal-stack
+        cards:
+          - type: button
+            entity: light.stua
+          - type: button
+            entity: light.gang
+          - type: button
+            entity: input_boolean.night_mode
+            name: Natt
+            tap_action:
+              action: toggle
+          - type: button
+            entity: input_boolean.day_mode
+            name: Dag
+            tap_action:
+              action: toggle
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            color_type: card
+            entity: lock.jv32818_lock
+            tap_action:
+              action: call-service
+              service: '[[[ return entity.state === "locked" ? "lock.unlock" : "lock.lock" ]]]'
+              haptic: "success"
+              service_data:
+                entity_id: lock.jv32818_lock
+                code: !secret mercedes_lock
+            name: Mercedes
+            show_state: true
+            state:
+              - value: unlocked
+                icon: mdi:car-door
+                color: red
+                styles:
+                  card:
+                    - animation: blink 2s ease infinite
+              - operator: default
+                color: green
+                icon: mdi:shield-check
+          - type: custom:button-card
+            color_type: card
+            entity: lock.hovedinngang
+            tap_action:
+              action: call-service
+              service: '[[[ return entity.state === "locked" ? "lock.unlock" : "lock.lock" ]]]'
+              haptic: "success"
+              service_data:
+                entity_id: lock.hovedinngang
+                code: !secret verisure_lock_code
+            name: Inngang
+            show_state: true
+            state:
+              - value: unlocked
+                icon: mdi:door-open
+                color: red
+                styles:
+                  card:
+                    - animation: blink 2s ease infinite
+              - operator: default
+                color: green
+                icon: mdi:shield-check
+          - type: custom:button-card
+            color_type: card
+            entity: cover.garage_door
+            tap_action:
+              action: call-service
+              haptic: "success"
+              service: cover.toggle
+              service_data:
+                entity_id: cover.garage_door
+            name: Garasje
+            show_state: true
+            state:
+              - value: open
+                icon: mdi:garage-open
+                color: red
+              - animation: blink 2s ease infinite
+              - operator: default
+                color: green
+                icon: mdi:shield-check
+          - type: custom:button-card
+            color_type: card
+            entity: binary_sensor.strips_mazw_access_control_window_door_is_open
+            name: Veranda
+            show_state: true
+            state:
+              - value: "on"
+                color: red
+                icon: mdi:door-open
+              - value: "off"
+                icon: mdi:shield-check
+                color: green
+      - type: vertical-stack
+        cards:
+          - type: "custom:simple-thermostat"
+            entity: climate.vennolumsvegen_82
+            hide:
+              temperature: true
+              state: true
+            layout:
+              step: row
+            header: false
+            control:
+              hvac:
+                heat_cool: false
+                heat: true
+                dry: false
+                fan_only: false
+                "off": false
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                icon: mdi:fan
+                color_type: card
+                tap_action:
+                  action: call-service
+                  service: climate.set_fan_mode
+                  haptic: "success"
+                  service_data:
+                    fan_mode: "Low"
+                    entity_id: climate.vennolumsvegen_82
+                show_state: true
+                state:
+                  - operator: template
+                    value: >
+                      [[[ return states['climate.vennolumsvegen_82'].attributes.fan_mode === 'Low' ]]]
+                    color: green
+                  - operator: default
+                    color: dark
+                styles:
+                  card:
+                    - height: 50px
+              - type: custom:button-card
+                icon: mdi:fan-speed-1
+                color_type: card
+                tap_action:
+                  action: call-service
+                  service: climate.set_fan_mode
+                  haptic: "success"
+                  service_data:
+                    fan_mode: "LowMid"
+                    entity_id: climate.vennolumsvegen_82
+                show_state: true
+                state:
+                  - operator: template
+                    value: >
+                      [[[ return states['climate.vennolumsvegen_82'].attributes.fan_mode === 'LowMid' ]]]
+                    color: green
+                  - operator: default
+                    color: dark
+                styles:
+                  card:
+                    - height: 50px
+              - type: custom:button-card
+                icon: mdi:fan-speed-2
+                color_type: card
+                tap_action:
+                  action: call-service
+                  service: climate.set_fan_mode
+                  haptic: "success"
+                  service_data:
+                    fan_mode: "Mid"
+                    entity_id: climate.vennolumsvegen_82
+                show_state: true
+                state:
+                  - operator: template
+                    value: >
+                      [[[ return states['climate.vennolumsvegen_82'].attributes.fan_mode === 'Mid' ]]]
+                    color: green
+                  - operator: default
+                    color: dark
+                styles:
+                  card:
+                    - height: 50px
+              - type: custom:button-card
+                icon: mdi:fan-speed-3
+                color_type: card                
+                tap_action:
+                  action: call-service
+                  service: climate.set_fan_mode
+                  haptic: "success"
+                  service_data:
+                    fan_mode: "HighMid"
+                    entity_id: climate.vennolumsvegen_82
+                show_state: true
+                state:
+                  - operator: template
+                    value: >
+                      [[[ return states['climate.vennolumsvegen_82'].attributes.fan_mode === 'HighMid' ]]]
+                    color: green
+                  - operator: default
+                    color: dark
+                styles:
+                  card:
+                    - height: 50px
+              - type: custom:button-card
+                icon: mdi:fan-plus
+                color_type: card                
+                tap_action:
+                  action: call-service
+                  service: climate.set_fan_mode
+                  haptic: "success"
+                  service_data:
+                    fan_mode: "High"
+                    entity_id: climate.vennolumsvegen_82
+                show_state: true
+                state:
+                  - operator: template
+                    value: >
+                      [[[ return states['climate.vennolumsvegen_82'].attributes.fan_mode === 'High' ]]]
+                    color: green
+                  - operator: default
+                    color: dark
+                styles:
+                  card:
+                    - height: 50px
+          - type: horizontal-stack
+            cards:
+            - type: custom:button-card
+              icon: mdi:dog
+              color_type: card              
+              tap_action:
+                action: call-service
+                service: input_boolean.toggle
+                haptic: "success"
+                service_data:        
+                  entity_id: input_boolean.dog_mode
+              show_state: true
+              label: "Dog Mode"
+              styles:
+                card:
+                  - height: 75px
+                  - width: 75px
+              state:
+                - operator: template
+                  value: >
+                    [[[ return states['input_boolean.dog_mode'].state == 'on' ]]]
+                  color: green
+                - operator: default
+                  color: dark
+            - type: custom:button-card
+              icon: mdi:car-seat-heater
+              enabled: false
+              color_type: card
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.toggle_preheat                
+              styles:
+                card:
+                  - height: 75px
+                  - width: 75px
+              state:
+                - operator: default
+                  color: dark
+                - operator: template
+                  value: >
+                    [[[ return states['binary_sensor.preheat_active'].state === 'on' ]]]
+                  color: green
+                - operator: template
+                  value: >
+                    [[[ return states['binary_sensor.preheat_active'].state === 'off' ]]]
+                  color: red

@@ -1,0 +1,24 @@
+sonos_say_nabu:
+  alias: "Sonos TTS script"
+  sequence:
+    - service: sonos.snapshot
+      data:
+        entity_id: "{{ sonos_entity }}"
+    - service: media_player.unjoin
+      data:
+        entity_id: "{{ sonos_entity }}"
+    - service: media_player.volume_set
+      data:
+        entity_id: "{{ sonos_entity }}"
+        volume_level: "{{ volume|default(0.5) }}"
+    - service: tts.cloud_say
+      data:
+        entity_id: "{{ sonos_entity }}"
+        message: "{{ message }}"
+        options:
+          gender: female
+        language: nb-NO
+    - delay: "{{ delay }}"
+    - service: sonos.restore
+      data:
+        entity_id: "{{ sonos_entity }}"

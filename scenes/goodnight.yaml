@@ -1,0 +1,16 @@
+- name: Goodnight
+  icon: "mdi:weather-night"
+  entities:
+    light.stua:
+      state: "off"
+    light.spisestue:
+      state: "off"
+    light.kjokken:
+      state: "on"
+      brightness: 64
+    light.gang:
+      state: "on"
+      brightness: 64
+    light.lysstripe_stue_bak_tv:
+      state: "on"
+      brightness: 64

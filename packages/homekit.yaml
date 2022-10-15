@@ -1,0 +1,42 @@
+homekit: 
+  - port: 21063
+    name: Vennolumsvegen 82
+    filter:
+      include_entities:
+        - binary_sensor.motion_sensor_trapp_occupancy
+    entity_config:
+      binary_sensor.motion_sensor_trapp_occupancy:
+        name: Bevegelse trapp
+        linked_battery_sensor: sensor.motion_sensor_trapp_battery
+
+  - port: 21064
+    name: Hovedinngang
+    mode: accessory
+    filter:
+      include_entities:
+        - lock.hovedinngang
+    entity_config:
+      lock.hovedinngang:
+        code: !secret verisure_lock_code
+        name: Hovedinngang
+
+  - port: 21065
+    name: Dørlås Mercedes
+    mode: accessory
+    filter:
+      include_entities:
+        - lock.jv32818_lock
+    entity_config:
+      lock.jv32818_lock:
+        code: !secret mercedes_lock
+        name: Mercedes
+
+  - port: 21066
+    name: Garasjeport Mercedes
+    mode: accessory
+    filter:
+      include_entities:
+        - cover.garage_door
+    entity_config:
+      cover.garage_door:
+        name: Garasjeport Mercedes

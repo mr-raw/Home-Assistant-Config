@@ -1,0 +1,12 @@
+title: Media
+icon: mdi:cast-audio
+cards:
+  - type: "custom:mini-media-player"
+    entity: media_player.sonos_move
+    name: "Sonos Move"
+  - type: "custom:mini-media-player"
+    entity: media_player.stue
+    name: "Arc+VB+HB"
+  - type: "custom:mini-media-player"
+    entity: media_player.sonos_one
+    name: "Soverom"

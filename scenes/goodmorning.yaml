@@ -1,0 +1,13 @@
+- name: Good morning
+  icon: "mdi:weather-sunset-up"
+  entities:
+    light.stua:
+      state: "off"
+    light.spisestue:
+      state: "off"
+    light.kjokken:
+      state: "on"
+      brightness: 127
+    light.gang:
+      state: "on"
+      brightness: 127

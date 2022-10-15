@@ -1,0 +1,16 @@
+person.erik_raae:
+  entity_picture: "local/img/me.jpg"
+  device_class: presence
+sensor.multisensor_6_humidity:
+  icon: mdi:water-percent
+sensor.multisensor_6_illuminance:
+  friendly_name: "Lysstyrke gang nede"
+  device_class: illuminance
+binary_sensor.multisensor_6_home_security_motion_detection:
+  device_class: motion
+  friendly_name: Bevegelse gang
+binary_sensor.vaskemaskin_aktiv:
+  device_class: power
+binary_sensor.strips_mazw_access_control_window_door_is_open:
+  device_class: door
+  friendly_name: Verandadør

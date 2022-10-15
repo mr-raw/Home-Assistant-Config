@@ -1,0 +1,15 @@
+title: System
+icon: mdi:tune
+cards:  
+  - type: entities
+    title: System
+    entities:      
+      - type: button
+        entity: homeassistant.restart
+        name: Restart Home Assistant
+        icon: mdi:power-cycle
+        tap_action:
+          action: call-service
+          confirmation:
+            text: Vil du virkelig starte Home Assistant på nytt?
+          service: homeassistant.restart

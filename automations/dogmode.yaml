@@ -1,0 +1,41 @@
+- alias: dogmode_enabled
+  trigger:
+    - platform: state
+      entity_id: input_boolean.dog_mode
+      from: "off"
+      to: "on"
+  action:
+    - service: script.sonos_say_nabu
+      data:
+        sonos_entity: media_player.sonos_move      
+        message: "Hundemodus er aktivert."
+        volume: 0.5
+    - delay:
+        seconds: 1
+    - service: media_player.select_source
+      target: 
+        entity_id: media_player.sonos_move
+      data:
+        source: KISS
+    - service: media_player.media_play
+      target:
+        entity_id: media_player.sonos_move
+
+- alias: dogmode_disabled
+  trigger:
+    - platform: state
+      entity_id: input_boolean.dog_mode
+      from: "on"
+      to: "off"
+  action:
+    - service: script.sonos_say_nabu
+      data:
+        sonos_entity: media_player.sonos_move      
+        message: "Hundemodus er deaktivert"
+        volume: 0.5
+    - delay:
+        seconds: 1
+    - service: media_player.media_stop
+      target:
+        entity_id: media_player.sonos_move
+        

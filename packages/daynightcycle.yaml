@@ -1,0 +1,34 @@
+automation:
+  - id: day_cycle
+    alias: Day mode
+    trigger:
+      - platform: sun
+        event: sunrise
+        offset: "01:00:00"
+    condition:
+    action:
+      - alias: "Set day mode"
+        service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.day_mode
+      - alias: "Unset day mode"
+        service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.night_mode
+
+  - id: night_cycle
+    alias: Night mode
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: "-00:30:00"
+    condition:
+    action:
+      - alias: "Set night mode"
+        service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.night_mode
+      - alias: "Unset day mode"
+        service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.day_mode

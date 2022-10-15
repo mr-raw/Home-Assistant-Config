@@ -1,0 +1,10 @@
+title: 3D-printer
+icon: mdi:printer-3d
+cards:
+  - type: entities
+    show_header_toggle: true
+    entities:
+      - entity: sensor.temp_sensor_3d_printer_temperature
+        name: Temperatur 3d-printer
+      - entity: sensor.temp_sensor_3d_printer_humidity
+        name: Luftfuktighet 3d-printer

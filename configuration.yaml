@@ -1,0 +1,89 @@
+# #########################################################################################################
+#                                     This is the newest configuration                                    #
+# #########################################################################################################
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Basic Configuration
+homeassistant:
+  name: Vennolumsvegen 82
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret elevation
+  unit_system: metric
+  time_zone: Europe/Oslo
+  customize: !include customize.yaml
+  packages: !include_dir_named packages/
+  external_url: https://h58s2g0gqwnb8h0cu0kwqkwubgiwfeca.ui.nabu.casa
+  internal_url: http://homeassistant:8123
+  temperature_unit: C
+  currency: NOK  
+
+# Discovery of devices ....
+discovery:
+
+# Lovelace UI Config
+lovelace:
+  mode: yaml
+  resources: !include lovelace/resources.yaml
+  
+frontend:
+  themes: !include_dir_merge_named themes
+
+# group: !include groups.yaml
+automation: !include_dir_merge_list automations/
+script: !include_dir_merge_named script/
+scene: !include_dir_merge_list scenes/
+input_boolean: !include input_boolean.yaml
+input_datetime: !include input_datetime.yaml
+template: !include template_sensors.yaml # template sensors
+sensor: !include sensor.yaml
+light: !include light.yaml
+switch: !include switch.yaml
+zone: !include zone.yaml
+# cover: !include cover.yaml
+utility_meter: !include utility_meter.yaml
+# homekit: !include homekit.yaml
+
+# Text to speech
+tts:
+  - platform: google_translate
+    language: "no"
+
+logger:
+  default: warning
+  logs:
+    homeassistant.core: fatal
+
+recorder:
+  purge_keep_days: 5
+  commit_interval: 30
+  auto_purge: true
+  exclude:
+    domains:
+      - automation
+      - updater
+    entity_globs:
+      - sensor.weather_*
+    entities:
+      - sun.sun      
+    event_types:
+      - call_service
+
+influxdb:
+  host: localhost
+  port: 8086
+  database: homeassistant
+  username: !secret influxdb_username
+  password: !secret influxdb_password
+  max_retries: 3
+  default_measurement: state
+  exclude:
+    domains:
+      - automation
+      - updater
+    entities:
+      - sun.sun
+
+rawtest:

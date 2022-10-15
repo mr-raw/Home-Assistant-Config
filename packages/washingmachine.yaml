@@ -1,0 +1,69 @@
+## Sensors
+template:
+  binary_sensor: # Binary sensors
+    - name: Vaskemaskin aktiv
+      delay_on: 
+        seconds: 30
+      delay_off:
+        minutes: 2
+      state: "{{ states('sensor.switch_meter_plugin_electric_consumed_w') | float(default=0.0) > 5.0}}"
+      icon: >-
+        {% if states('sensor.switch_meter_plugin_electric_consumed_w') | float(default=0.0) > 5.0 %}
+          mdi:washing-machine
+        {% else %}
+          mdi:washing-machine-off
+        {% endif %}'
+    - name: Mopp tilkoblet    
+      state: "{{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'mop_attached') }}"
+      device_class: connectivity
+
+## Automations
+
+automation: 
+  - alias: Notify once when washing mashine is done.
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.vaskemaskin_aktiv
+        to: "off"
+    action:
+      - service: notify.mobile_app_iphone
+        data:
+          message: "Klesvasken er klar. Husk å ta ut."
+          title: "Klesvasken er klar"
+
+  - alias: Set lights to green when the wash is done.
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.vaskemaskin_aktiv
+        to: "off"
+    condition:  
+      - condition: state # Døren til vaskerommet må være lukket.
+        entity_id: binary_sensor.door_sensor_vaskerom_contact
+        state: "off"
+    action:
+      - service: light.turn_on # Skrur på lyset innerst i gangen og setter det til fargen grønn.
+        data:
+          entity_id: 
+            - light.taklampe_1_gang_pare_1
+            - light.taklampe_1_gang_pare_2
+          color_name: green
+          brightness_pct: 40
+      - service: light.toggle # Blinker med lyset
+        data:
+          flash: short
+        target:
+          entity_id: light.lysstripe_kontor_erik
+
+  - alias: Reset lights when door is opened
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.door_sensor_vaskerom_contact
+        to: "on"      
+    condition:
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: 
+            - light.taklampe_1_gang_pare_1
+            - light.taklampe_1_gang_pare_2
+          profile: relax

@@ -1,0 +1,182 @@
+### Input helpers
+input_boolean:
+  daily_vacuum:
+    name: Daglig støvsuging
+    icon: mdi:robot-vacuum-variant
+  vacuum_monday:
+    name: Mandag
+    icon: mdi:calendar-weekend
+  vacuum_tuesday:
+    name: Tirsdag
+    icon: mdi:calendar-weekend
+  vacuum_wednesday:
+    name: Onsdag
+    icon: mdi:calendar-weekend
+  vacuum_thursday:
+    name: Torsdag
+    icon: mdi:calendar-weekend
+  vacuum_friday:
+    name: Fredag
+    icon: mdi:calendar-weekend
+  vacuum_saturday:
+    name: Lørdag
+    icon: mdi:calendar-weekend
+  vacuum_sunday:
+    name: Søndag
+    icon: mdi:calendar-weekend
+
+### Scripts
+automation: 
+  - alias: Daily vacuum Monday
+    trigger:
+      - platform: time
+        at: input_datetime.vacuum_time
+    condition:
+      - condition: state
+        entity_id: input_boolean.daily_vacuum
+        state: "on"
+      - condition: state
+        entity_id: input_boolean.vacuum_monday
+        state: "on"
+      - condition: time
+        weekday:
+          - mon
+    action:
+      - service: vacuum.start
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+
+  - alias: Daily vacuum Tuesday
+    trigger:
+      - platform: time
+        at: input_datetime.vacuum_time
+    condition:
+      - condition: state
+        entity_id: input_boolean.daily_vacuum
+        state: "on"
+      - condition: state
+        entity_id: input_boolean.vacuum_tuesday
+        state: "on"
+      - condition: time
+        weekday:
+          - tue
+    action:
+      - service: vacuum.start
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+
+  - alias: Daily vacuum Wednesday
+    trigger:
+      - platform: time
+        at: input_datetime.vacuum_time
+    condition:
+      - condition: state
+        entity_id: input_boolean.daily_vacuum
+        state: "on"
+      - condition: state
+        entity_id: input_boolean.vacuum_wednesday
+        state: "on"
+      - condition: time
+        weekday:
+          - wed
+    action:
+      - service: vacuum.start
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+
+  - alias: Daily vacuum Thursday
+    trigger:
+      - platform: time
+        at: input_datetime.vacuum_time
+    condition:
+      - condition: state
+        entity_id: input_boolean.daily_vacuum
+        state: "on"
+      - condition: state
+        entity_id: input_boolean.vacuum_thursday
+        state: "on"
+      - condition: time
+        weekday:
+          - thu
+    action:
+      - service: vacuum.start
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+
+  - alias: Daily vacuum Friday
+    trigger:
+      - platform: time
+        at: input_datetime.vacuum_time
+    condition:
+      - condition: state
+        entity_id: input_boolean.daily_vacuum
+        state: "on"
+      - condition: state
+        entity_id: input_boolean.vacuum_friday
+        state: "on"
+      - condition: time
+        weekday:
+          - fri
+    action:
+      - service: vacuum.start
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+
+  - alias: Daily vacuum Saturday
+    trigger:
+      - platform: time
+        at: input_datetime.vacuum_time
+    condition:
+      - condition: state
+        entity_id: input_boolean.daily_vacuum
+        state: "on"
+      - condition: state
+        entity_id: input_boolean.vacuum_saturday
+        state: "on"
+      - condition: time
+        weekday:
+          - sat
+    action:
+      - service: vacuum.start
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+
+  - alias: Daily vacuum Sunday
+    trigger:
+      - platform: time
+        at: input_datetime.vacuum_time
+    condition:
+      - condition: state
+        entity_id: input_boolean.daily_vacuum
+        state: "on"
+      - condition: state
+        entity_id: input_boolean.vacuum_sunday
+        state: "on"
+      - condition: time
+        weekday:
+          - sun
+    action:
+      - service: vacuum.start
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+
+  # Lag en automasjon som sender et varsel når støvsuging er ferdig og mopp er tilkoblet.
+  - alias: Alert when mopping is finished and mop is attached. Also go to service position
+    trigger:
+      # Statusen til støvsugeren blir endret til "returning"
+      - platform: state
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        from: "returning"
+        to: "docked"
+    condition:
+      # Moppen må være koblet på.
+      # 11.06.22: Har endret til korret entity_id
+      - condition: state
+        entity_id: binary_sensor.xiaomi_vacuum_cleaner_mop_attached
+        state: "on"
+    action:
+      # Gi beskjed om at moppen må tas av
+      - service: notify.mobile_app_iphone
+        data:
+          message: Støvsuging ferdig. Mopp er tilkoblet. Støvsuger kjører til serviceposision
+          title: Støvsugermopp er tilkoblet
+      # Gå til serviceposisjon
+      - service: xiaomi_miio.vacuum_goto
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          x_coord: 24500
+          y_coord: 23500
+      # Gi annen visuell beskjed. Blink lys?

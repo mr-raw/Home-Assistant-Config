@@ -1,0 +1,36 @@
+title: Garasje
+icon: mdi:garage-variant
+cards:
+  - type: custom:bar-card
+    title: "Nivåer"
+    entities:
+      - entity: sensor.jv32818_state_of_charge
+        name: Batteri
+        severity:
+          - color: Red
+            from: 0
+            to: 50
+          - color: Orange
+            from: 51
+            to: 80
+          - color: Green
+            from: 81
+            to: 100
+      - entity: sensor.jv32818_fuel_level
+        name: "Diesel"
+        severity:
+          - color: Red
+            from: 0
+            to: 20
+          - color: Green
+            from: 21
+            to: 100
+      - entity: sensor.adblue_niva
+        name: "ADBlue"
+        severity:
+          - color: Red
+            from: 0
+            to: 10
+          - color: Green
+            from: 11
+            to: 100

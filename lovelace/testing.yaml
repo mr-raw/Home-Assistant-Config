@@ -1,0 +1,53 @@
+title: TESTBED
+icon: mdi:test-tube
+cards:
+  - type: entities
+    state_color: true
+    entities:
+      - switch.yale_lock
+      #- entity: sensor.postennextdeliveryday
+      #  name: Postlevering
+      #  icon: mdi:mailbox-open
+      - binary_sensor.mopp_tilkoblet
+      - binary_sensor.vaskemaskin_aktiv
+      - sensor.switch_meter_plugin_electric_consumed_w
+      - sensor.multisensor_6_illuminance
+      - sensor.motion_sensor_trapp_illuminance_lux
+      - binary_sensor.strips_mazw_access_control_window_door_is_open
+      - binary_sensor.door_sensor_vaskerom_contact
+      - binary_sensor.multisensor_6_home_security_motion_detection
+      - binary_sensor.motion_sensor_trapp_occupancy
+      - sensor.batteristatus
+      - sensor.adblue_niva
+  - type: history-graph
+    title: Testgraf
+    entities:
+      - entity: sensor.netatmo_vennolumsvegen_82_inne_temperature
+        name: "Kjøkken"
+      - entity: sensor.netatmo_vennolumsvegen_82_inne_veranda_temperatur_og_fuktighet_temperature
+        name: "Veranda"
+        
+  - type: custom:mini-graph-card
+    animate: true
+    entities:
+      - entity: sensor.netatmo_vennolumsvegen_82_inne_temperature
+        name: "Kjøkken"
+      - entity: sensor.netatmo_vennolumsvegen_82_inne_veranda_temperatur_og_fuktighet_temperature
+        name: "Veranda"
+
+  - type: custom:posten-card
+    entity: sensor.postendeliverydays
+
+  - type: custom:bar-card
+    entities:
+      - entity: sensor.jv32818_fuel_level
+      - entity: sensor.adblue_niva
+      - entity: sensor.jv32818_state_of_charge
+    title: "Test"
+
+  - type: map
+    hours_to_show: 48
+    default_zoom: 15
+    aspect_ratio: 16:9
+    entities:
+      - device_tracker.jv32818_device_tracker

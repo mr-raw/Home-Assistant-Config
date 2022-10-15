@@ -1,0 +1,5 @@
+vacuum_time:
+  name: Tidspunkt for støvsuging
+  has_date: false
+  has_time: true
+  initial: "11:00"

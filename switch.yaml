@@ -1,0 +1,21 @@
+platform: template
+switches:
+  yale_lock:
+    friendly_name: 'Inngangsdør låst'
+    value_template: "{{ is_state('lock.hovedinngang', 'locked') }}"
+    turn_on:
+      service: lock.lock
+      data:
+        entity_id: lock.hovedinngang
+        code: !secret verisure_lock_code
+    turn_off:
+      service: lock.unlock
+      data:
+        entity_id: lock.hovedinngang
+        code: !secret verisure_lock_code
+    icon_template: >-
+      {% if is_state('lock.hovedinngang', 'locked') %}
+        mdi:lock
+      {% else %}
+        mdi:lock-open
+      {% endif %}

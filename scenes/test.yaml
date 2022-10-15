@@ -1,0 +1,7 @@
+- name: Test
+  icon: "mdi:test-tube"
+  entities:
+    light.stua:
+      state: "on"
+    light.spisestue:
+      state: "on"

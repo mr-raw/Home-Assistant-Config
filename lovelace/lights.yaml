@@ -1,0 +1,114 @@
+title: Alle lys
+icon: mdi:home-lightbulb-outline
+cards:
+- type: entities
+  title: Kontor
+  show_header_toggle: true
+  entities:    
+    - type: custom:slider-entity-row
+      entity: light.lysstripe_kontor_erik
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.lysstripe_kontor_jorgen
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.taklampe_kontor_paere_1
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.taklampe_kontor_paere_2
+      toggle: true
+
+- type: entities
+  title: Kjøkken
+  show_header_toggle: true
+  entities:
+    - type: custom:slider-entity-row
+      entity: light.taklampe_kjokken_paere_1
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.taklampe_kjokken_paere_2
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.taklampe_kjokken_paere_3
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.lysstripe_kjokken
+      toggle: true
+
+- type: entities
+  title: Gang
+  show_header_toggle: true
+  entities:
+    - type: custom:slider-entity-row
+      entity: light.taklampe_1_gang_pare_1
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.taklampe_1_gang_pare_2
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.taklampe_2_gang_pare_1
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.taklampe_2_gang_pare_2
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.hue_go
+      toggle: true
+
+- type: entities
+  title: Stua
+  show_header_toggle: true
+  entities:
+    - type: custom:slider-entity-row
+      entity: light.gulvlampe_stue_1
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.gulvlampe_stue_2
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.lysstripe_stue_bak_tv
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.veggplugg_1
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.veggplugg_2
+      toggle: true
+
+- type: entities
+  title: Spisestue
+  show_header_toggle: true
+  entities:
+    - type: custom:slider-entity-row
+      entity: light.vinduslampe_spisestue
+      toggle: true      
+    - type: custom:slider-entity-row
+      entity: light.lysstripe_spisestue
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.gulvlampe_spisestue
+      toggle: true
+
+- type: entities
+  title: Soverom
+  show_header_toggle: true
+  entities:
+    - type: custom:slider-entity-row
+      entity: light.lyspaere_jorgen
+    - type: custom:slider-entity-row
+      entity: light.lyspaere_erik
+    - type: custom:slider-entity-row
+      entity: light.taklampe_soverom_pare_1
+    - type: custom:slider-entity-row
+      entity: light.taklampe_soverom_pare_2
+
+- type: entities
+  title: Trapp
+  show_header_toggle: true
+  entities:
+    - type: custom:slider-entity-row
+      entity: light.taklampe_trapp_paere_1
+    - type: custom:slider-entity-row
+      entity: light.taklampe_trapp_paere_2
+    - type: custom:slider-entity-row
+      entity: light.taklampe_trapp_paere_3

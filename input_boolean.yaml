@@ -1,0 +1,52 @@
+erik_hjemme:
+  name: Erik Hjemme
+  icon: mdi:account
+jorgen_hjemme:
+  name: Jørgen Hjemme
+  icon: mdi:account
+
+## Modes
+night_mode:
+  name: Nattmodus
+  icon: mdi:weather-night
+day_mode:
+  name: Dagmodus
+  icon: mdi:weather-sunset-up
+guest_mode:
+  name: Gjestemodus
+  icon: mdi:human-male-female
+party_mode:
+  name: Partymodus
+  icon: mdi:party-popper
+people_home:
+  name: Hjemmemodus
+  icon: mdi:home
+away_mode:
+  name: Bortemodus
+vacation_mode:
+  name: Feriemodus
+  icon: mdi:airplane-takeoff
+
+dog_mode: # Dog mode
+  name: Dog Mode
+  icon: mdi:dog
+
+## Bools to handle different automations.
+
+automate_lights:
+  name: Lysautomasjoner
+  icon: mdi:lightbulb
+
+audible_alerts:
+  name: "Lydnotifikasjoner"
+  icon: mdi:speaker-off
+
+dog_trip_gran_activated:
+  name: "Kveldstur i Gran aktivert"
+  icon: mdi:dog
+
+dog_trip_checkpoint1_entered:
+  name: "Sjekkpunkt 1 passert"
+
+dog_trip_checkpoint2_entered:
+  name: "Sjekkpunkt 2 passert"

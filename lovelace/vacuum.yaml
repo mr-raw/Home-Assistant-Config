@@ -1,0 +1,72 @@
+title: Støvsuger
+icon: mdi:robot-vacuum-variant
+cards:
+  - type: custom:xiaomi-vacuum-card
+    name: Roborock S6
+    vendor: xiaomi
+    entity: vacuum.xiaomi_vacuum_cleaner
+    image: /local/community/lovelace-xiaomi-vacuum-card/vacuum.png
+    buttons: false
+    attributes:
+      main_brush:
+        label: "Hovedkost: "
+        unit: " timer"
+      side_brush:
+        label: "Sidekost: "
+        unit: " timer"
+      filter:
+        label: "Filter: "
+        unit: " timer"
+      sensor:
+        label: "Sensor: "
+        unit: " timer"
+
+  - type: horizontal-stack
+    cards:
+      - type: button
+        name: Start rengjøring
+        icon: mdi:spray-bottle
+        show_name: true
+        show_state: false
+        tap_action:
+          action: call-service
+          service: vacuum.start
+          service_data:
+            entity_id: vacuum.xiaomi_vacuum_cleaner
+      - type: button
+        name: Avslutt rengjøring
+        icon: mdi:stop
+        show_name: true
+        show_state: false
+        tap_action:
+          action: call-service
+          service: vacuum.stop
+          service_data:
+            entity_id: vacuum.xiaomi_vacuum_cleaner
+      - type: button
+        name: Gå til docking
+        icon: mdi:home
+        show_name: true
+        show_state: false
+        tap_action:
+          action: call-service
+          service: vacuum.return_to_base
+          service_data:
+            entity_id: vacuum.xiaomi_vacuum_cleaner
+      - type: button
+        name: Gå til serviceposisjon
+        icon: mdi:toolbox-outline
+        show_name: true
+        show_state: false
+        tap_action:
+          action: call-service
+          service: xiaomi_miio.vacuum_goto
+          service_data:
+            entity_id: vacuum.xiaomi_vacuum_cleaner
+            x_coord: 24500
+            y_coord: 23500
+
+  # - type: picture-glance
+  #   camera_image: camera.xiaomi_cloud_map_extractor
+  #   entities:
+  #     - camera.xiaomi_cloud_map_extractor

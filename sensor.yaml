@@ -1,0 +1,7 @@
+- platform: rest
+  name: PostenDeliveryDays
+  resource: https://www.posten.no/levering-av-post/_/component/main/1/leftRegion/1?postCode=2750
+  headers:
+    x-requested-with: XMLHttpRequest
+  scan_interval: 57600
+  value_template: "{{ value_json.nextDeliveryDays | reject('==', 'Invalid date') | list }}"
