@@ -1,0 +1,10 @@
+automation:
+  - alias: Home Assistant Startup Notification
+    trigger:
+      - platform: homeassistant
+        event: start
+    action:
+      - service: persistent_notification.create
+        data:
+          message: "Home Assistant has started"
+          title: "Home Assistant"

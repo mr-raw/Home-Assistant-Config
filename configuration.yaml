@@ -15,8 +15,8 @@ homeassistant:
   time_zone: Europe/Oslo
   customize: !include customize.yaml
   packages: !include_dir_named packages/
-  external_url: https://h58s2g0gqwnb8h0cu0kwqkwubgiwfeca.ui.nabu.casa
-  internal_url: http://homeassistant:8123
+  external_url: !secret external_url
+  internal_url: !secret internal_url
   temperature_unit: C
   currency: NOK
 
@@ -36,11 +36,11 @@ automation: !include_dir_merge_list automations/
 script: !include_dir_merge_named script/
 scene: !include_dir_merge_list scenes/
 input_boolean: !include input_boolean.yaml
-input_datetime: !include input_datetime.yaml
+# input_datetime: !include input_datetime.yaml
 template: !include template_sensors.yaml # template sensors
 sensor: !include sensor.yaml
-light: !include light.yaml
-switch: !include switch.yaml
+#light: !include light.yaml
+#switch: !include switch.yaml
 zone: !include zone.yaml
 # cover: !include cover.yaml
 utility_meter: !include utility_meter.yaml
