@@ -1,0 +1,39 @@
+automation:
+  - id: nightmode
+    alias: Activate Night Mode
+    trigger:
+      - platform: state
+        entity_id: input_boolean.night_mode
+        from: "off"
+        to: "on"
+    action:
+      - entity_id: input_boolean.day_mode
+        service: input_boolean.turn_off
+      - entity_id: input_boolean.party_mode
+        service: input_boolean.turn_off
+
+  - id: daymode
+    alias: Activate Day Mode
+    trigger:
+      - platform: state
+        entity_id: input_boolean.day_mode
+        from: "off"
+        to: "on"
+    action:
+      - entity_id: input_boolean.night_mode
+        service: input_boolean.turn_off
+      - entity_id: input_boolean.party_mode
+        service: input_boolean.turn_off
+
+  - id: partymode
+    alias: Activate Party Mode
+    trigger:
+      - platform: state
+        entity_id: input_boolean.party_mode
+        from: "off"
+        to: "on"
+    action:
+      - entity_id: input_boolean.day_mode
+        service: input_boolean.turn_off
+      - entity_id: input_boolean.night_mode
+        service: input_boolean.turn_off
