@@ -31,26 +31,9 @@ lovelace:
 frontend:
   themes: !include_dir_merge_named themes
 
-# group: !include groups.yaml
-#automation: !include_dir_merge_list automations/
 script: !include_dir_merge_named script/
 scene: !include_dir_merge_list scenes/
-#input_boolean: !include input_boolean.yaml
-# input_datetime: !include input_datetime.yaml
-#template: !include template_sensors.yaml # template sensors
-#sensor: !include sensor.yaml
-#light: !include light.yaml
-#switch: !include switch.yaml
 zone: !include zone.yaml
-# cover: !include cover.yaml
-#utility_meter: !include utility_meter.yaml
-# homekit: !include homekit.yaml
-
-# Text to speech
-#tts:
-#  - platform: google_translate
-#    language: "no"
-
 logger:
   default: warning
   logs:
