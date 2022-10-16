@@ -39,3 +39,14 @@ automation:
       - service: media_player.media_stop
         target:
           entity_id: media_player.sonos_move
+
+input_boolean:
+  dog_trip_gran_activated:
+    name: "Kveldstur i Gran aktivert"
+    icon: mdi:dog
+
+  dog_trip_checkpoint1_entered:
+    name: "Sjekkpunkt 1 passert"
+
+  dog_trip_checkpoint2_entered:
+    name: "Sjekkpunkt 2 passert"
