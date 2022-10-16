@@ -5,9 +5,6 @@ cards:
     state_color: true
     entities:
       - switch.yale_lock
-      #- entity: sensor.postennextdeliveryday
-      #  name: Postlevering
-      #  icon: mdi:mailbox-open
       - binary_sensor.mopp_tilkoblet
       - binary_sensor.vaskemaskin_aktiv
       - sensor.switch_meter_plugin_electric_consumed_w
@@ -19,6 +16,7 @@ cards:
       - binary_sensor.motion_sensor_trapp_occupancy
       - sensor.batteristatus
       - sensor.adblue_niva
+
   - type: history-graph
     title: Testgraf
     entities:
@@ -26,7 +24,7 @@ cards:
         name: "Kjøkken"
       - entity: sensor.netatmo_vennolumsvegen_82_inne_veranda_temperatur_og_fuktighet_temperature
         name: "Veranda"
-        
+
   - type: custom:mini-graph-card
     animate: true
     entities:
@@ -44,10 +42,3 @@ cards:
       - entity: sensor.adblue_niva
       - entity: sensor.jv32818_state_of_charge
     title: "Test"
-
-  - type: map
-    hours_to_show: 48
-    default_zoom: 15
-    aspect_ratio: 16:9
-    entities:
-      - device_tracker.jv32818_device_tracker

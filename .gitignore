@@ -2,15 +2,15 @@
 .storage/
 .cloud/
 .vscode/
-blueprints/
-appdeamon/
-custom_components/
-deps/
-esphome/
-node-red/
-tts/
-www/
-zigbee2mqtt/
+# blueprints/
+# appdeamon/
+# custom_components/
+# deps/
+# esphome/
+# node-red/
+# tts/
+# www/
+# zigbee2mqtt/
 
 !*.yaml
 !.gitignore
