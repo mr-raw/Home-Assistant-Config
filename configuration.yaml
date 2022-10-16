@@ -18,7 +18,7 @@ homeassistant:
   external_url: https://h58s2g0gqwnb8h0cu0kwqkwubgiwfeca.ui.nabu.casa
   internal_url: http://homeassistant:8123
   temperature_unit: C
-  currency: NOK  
+  currency: NOK
 
 # Discovery of devices ....
 discovery:
@@ -27,7 +27,7 @@ discovery:
 lovelace:
   mode: yaml
   resources: !include lovelace/resources.yaml
-  
+
 frontend:
   themes: !include_dir_merge_named themes
 
@@ -67,7 +67,7 @@ recorder:
     entity_globs:
       - sensor.weather_*
     entities:
-      - sun.sun      
+      - sun.sun
     event_types:
       - call_service
 
@@ -85,5 +85,4 @@ influxdb:
       - updater
     entities:
       - sun.sun
-
-rawtest:
+#rawtest:
