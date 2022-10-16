@@ -6,10 +6,10 @@ cards:
     show_header_toggle: true
     entities:
       - type: custom:slider-entity-row
-        entity: light.lysstripe_kontor_erik
+        entity: light.lysstripe_kontor_ost
         toggle: true
       - type: custom:slider-entity-row
-        entity: light.lysstripe_kontor_jorgen
+        entity: light.lysstripe_kontor_nord
         toggle: true
       - type: custom:slider-entity-row
         entity: light.taklampe_kontor_paere_1
