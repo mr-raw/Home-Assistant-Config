@@ -11,3 +11,16 @@ HACS components:
 - nordpool
 - panasonic_cc
 - xiaomi_cloud_map_extractor
+- bar-card
+- battery-state-card
+- button-card <3
+- lovelace-card-templater
+- lovelace-card-tools
+- lovelace-digital-clock
+- lovelace-posten-card
+- lovelace-slider-entity-row
+- lovelace-xiaomi-vacuum-card
+- mini-graph-card
+- mini-media-player
+- simple-thermostat
+- timer-bar-card
