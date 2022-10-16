@@ -7,13 +7,13 @@
   action:
     - service: script.sonos_say_nabu
       data:
-        sonos_entity: media_player.sonos_move      
+        sonos_entity: media_player.sonos_move
         message: "Hundemodus er aktivert."
         volume: 0.5
     - delay:
         seconds: 1
     - service: media_player.select_source
-      target: 
+      target:
         entity_id: media_player.sonos_move
       data:
         source: KISS
@@ -30,12 +30,11 @@
   action:
     - service: script.sonos_say_nabu
       data:
-        sonos_entity: media_player.sonos_move      
+        sonos_entity: media_player.sonos_move
         message: "Hundemodus er deaktivert"
         volume: 0.5
     - delay:
-        seconds: 1
+        seconds: 3
     - service: media_player.media_stop
       target:
         entity_id: media_player.sonos_move
-        
