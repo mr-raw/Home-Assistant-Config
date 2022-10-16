@@ -15,8 +15,8 @@ homeassistant:
   time_zone: Europe/Oslo
   customize: !include customize.yaml
   packages: !include_dir_named packages/
-  external_url: https://h58s2g0gqwnb8h0cu0kwqkwubgiwfeca.ui.nabu.casa
-  internal_url: http://homeassistant:8123
+  external_url: !secret external_url
+  internal_url: !secret internal_url
   temperature_unit: C
   currency: NOK
 
