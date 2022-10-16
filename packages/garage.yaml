@@ -25,7 +25,6 @@ automation:
       - service: input_boolean.turn_off
         entity_id: input_boolean.dog_trip_gran_activated
 
-
 cover:
   - platform: template
     covers:
@@ -45,16 +44,22 @@ cover:
           - service: switch.turn_on
             target:
               entity_id: switch.smart_implant_5
-        close_cover:        
+        close_cover:
           - condition: state
             entity_id: binary_sensor.door_sensor_garage_right_contact
             state: "on"
           - service: switch.turn_on
             target:
               entity_id: switch.smart_implant_5
-        icon_template:  >-
+        icon_template: >-
           {% if is_state('binary_sensor.door_sensor_garage_right_contact', 'on') %}
             mdi:garage-open
           {% else %}
             mdi:garage
           {% endif %}
+
+utility_meter:
+  billader_forbruk:
+    name: Strømforbruk billader
+    source: sensor.vennolumsvegen_82_lifetime_energy
+    cycle: daily

@@ -25,8 +25,15 @@ input_boolean:
     name: Søndag
     icon: mdi:calendar-weekend
 
+input_datetime:
+  vacuum_time:
+    name: Tidspunkt for støvsuging
+    has_date: false
+    has_time: true
+    initial: "11:00"
+
 ### Scripts
-automation: 
+automation:
   - alias: Daily vacuum Monday
     trigger:
       - platform: time

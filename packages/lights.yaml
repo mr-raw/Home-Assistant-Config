@@ -1,0 +1,57 @@
+automation:
+  - alias: Skru på lys innerst i gangen ved bevegelse
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.multisensor_6_home_security_motion_detection
+        to: "on"
+    condition:
+      - condition: state
+        entity_id: input_boolean.automate_lights
+        state: "on"
+    action:
+      - service: light.turn_on
+        target:
+          entity_id:
+            - light.taklampe_1_gang_pare_1
+            - light.taklampe_1_gang_pare_2
+            - light.taklampe_2_gang_pare_1
+            - light.taklampe_2_gang_pare_2
+            - light.hue_go
+
+  - alias: Skru av lys innerst i gangen etter 10 minutter fra siste bevegelse
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.multisensor_6_home_security_motion_detection
+        to: "off"
+    condition:
+      - condition: state
+        entity_id: input_boolean.automate_lights
+        state: "on"
+    action:
+      - delay:
+          minutes: 10
+      - service: light.turn_off
+        target:
+          entity_id:
+            - light.taklampe_1_gang_pare_1
+            - light.taklampe_1_gang_pare_2
+            - light.taklampe_2_gang_pare_1
+            - light.taklampe_2_gang_pare_2
+            - light.hue_go
+
+  - alias: Fjernkontrolltest
+    trigger:
+      - platform: event
+        event_type: zwave_js_value_notification
+        event_data:
+          node_id: 7
+          label: "Scene 003"
+          value_raw: 0
+    action:
+      - service: light.toggle
+        entity_id: light.soverom
+
+input_boolean:
+  automate_lights:
+    name: Lysautomasjoner
+    icon: mdi:lightbulb
