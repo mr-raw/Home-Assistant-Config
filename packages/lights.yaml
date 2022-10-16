@@ -50,3 +50,8 @@ automation:
     action:
       - service: light.toggle
         entity_id: light.soverom
+
+input_boolean:
+  automate_lights:
+    name: Lysautomasjoner
+    icon: mdi:lightbulb

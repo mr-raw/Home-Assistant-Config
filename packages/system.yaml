@@ -8,3 +8,28 @@ automation:
         data:
           message: "Home Assistant has started"
           title: "Home Assistant"
+
+input_boolean:
+  audible_alerts:
+    name: "Lydnotifikasjoner"
+    icon: mdi:speaker-off
+
+template:
+  - sensor: # Template sensors
+      - name: Temperatur Gran
+        state: "{{ state_attr('weather.vennolumsvegen_82', 'temperature') }}"
+        device_class: temperature
+        unit_of_measurement: "°C"
+  - platform: rest
+    name: PostenDeliveryDays
+    resource: https://www.posten.no/levering-av-post/_/component/main/1/leftRegion/1?postCode=2750
+    headers:
+      x-requested-with: XMLHttpRequest
+    scan_interval: 57600
+    value_template: "{{ value_json.nextDeliveryDays | reject('==', 'Invalid date') | list }}"
+
+utility_meter:
+  varmepumpe_forbruk:
+    name: Strømforbruk varmepumpe
+    source: sensor.vennolumsvegen_82_daily_energy
+    cycle: daily
