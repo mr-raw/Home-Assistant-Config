@@ -2,6 +2,11 @@
 
 ![The Main Page](/mainpage.png)
 
+- The lovelace directory contains the yaml files for the tabs on the dashboard. See ui-lovelace.yaml
+- The packages directory contains the different automations, inputs and sensors for the respective areas being automated.
+- The scenes directory contains the scenes in use.
+- The script directory contains scripts that are called by the automations.
+
 HACS components:
 
 - blitzortung
