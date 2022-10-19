@@ -94,9 +94,9 @@ cards:
     show_header_toggle: true
     entities:
       - type: custom:slider-entity-row
-        entity: light.lyspaere_jorgen
+        entity: light.lyspaere_soverom_hoyre
       - type: custom:slider-entity-row
-        entity: light.lyspaere_erik
+        entity: light.lyspaere_soverom_venstre
       - type: custom:slider-entity-row
         entity: light.taklampe_soverom_pare_1
       - type: custom:slider-entity-row
