@@ -6,13 +6,13 @@ custom_header:
   button_text:
     options: ":"
 views:
-  - !include lovelace/main.yaml # Hovedoversikten
-  - !include lovelace/lights.yaml # Alle lys
+  - !include lovelace/main.yaml # Main overview
+  - !include lovelace/lights.yaml # All the lighs
   - !include lovelace/media.yaml # Media stuffz
-  - !include lovelace/garage.yaml # Garasjen
+  - !include lovelace/garage.yaml # The garage, including the car
   - !include lovelace/testing.yaml # TESTBED
   - !include lovelace/3dprinter.yaml # 3D printer
-  - !include lovelace/vacuum.yaml # Støvsuger
+  - !include lovelace/vacuum.yaml # Vacuum
   - !include lovelace/batteries.yaml # Battery status
   - !include lovelace/system.yaml # System info
   - !include lovelace/settings.yaml # Settings

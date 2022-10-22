@@ -1,23 +1,23 @@
-- name: Home
-  latitude: 60.35597442278337
-  longitude: 10.615561008453371
-  radius: 50
-  icon: mdi:account-multiple
+# - name: Home
+#   latitude: 60.35597442278337
+#   longitude: 10.615561008453371
+#   radius: 50
+#   icon: mdi:account-multiple
 
-- name: Kiwi
-  latitude: 60.41867241417623
-  longitude: 10.508937835693361
-  radius: 50
-  icon: mdi:briefcase-outline
+# - name: Kiwi
+#   latitude: 60.41867241417623
+#   longitude: 10.508937835693361
+#   radius: 50
+#   icon: mdi:briefcase-outline
 
-- name: Rema
-  latitude: 60.407018288875655
-  longitude: 10.532433986663818
-  radius: 50
-  icon: mdi:briefcase-outline
+# - name: Rema
+#   latitude: 60.407018288875655
+#   longitude: 10.532433986663818
+#   radius: 50
+#   icon: mdi:briefcase-outline
 
-- name: Trintom
-  latitude: 60.359687496174416
-  longitude: 10.584514439105988
-  radius: 10
-  icon: mdi:mdi-school
+# - name: Trintom
+#   latitude: 60.359687496174416
+#   longitude: 10.584514439105988
+#   radius: 10
+#   icon: mdi:mdi-school

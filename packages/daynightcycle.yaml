@@ -1,5 +1,6 @@
 automation:
-  - id: day_cycle
+  # Activated one hour after sunrise.
+  - id: day_cycle1666479159560
     alias: Day mode
     trigger:
       - platform: sun
@@ -16,6 +17,7 @@ automation:
         target:
           entity_id: input_boolean.night_mode
 
+  # Activated 30 minutes before sunset.
   - id: night_cycle
     alias: Night mode
     trigger:

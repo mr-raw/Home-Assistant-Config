@@ -29,3 +29,6 @@ HACS components:
 - mini-media-player
 - simple-thermostat
 - timer-bar-card
+
+- [x] Test
+- [ ] Test2
