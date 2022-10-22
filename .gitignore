@@ -16,6 +16,7 @@
 !.gitignore
 !*.md
 !**/packages
+!**/packages/**
 !**/automations
 !**/lovelace
 !**/scenes

@@ -7,18 +7,8 @@ default_config:
 
 # Basic Configuration
 homeassistant:
-  # name: Vennolumsvegen 82
-  # latitude: !secret latitude
-  # longitude: !secret longitude
-  # elevation: !secret elevation
-  # unit_system: metric
-  # time_zone: Europe/Oslo
   customize: !include customize.yaml
   packages: !include_dir_named packages/
-  # external_url: !secret external_url
-  # internal_url: !secret internal_url
-  # temperature_unit: C
-  # currency: NOK
 
 # Discovery of devices ....
 discovery:
@@ -29,17 +19,17 @@ lovelace:
   resources: !include lovelace/resources.yaml
 
 frontend:
-  themes: !include_dir_merge_named themes
+  themes: !include_dir_merge_named themes/
 
 script: !include_dir_merge_named scripts/
 scene: !include_dir_merge_list scenes/
-#zone: !include zone.yaml
 logger:
   default: warning
   logs:
     homeassistant.core: fatal
 
 recorder:
+  db_url: mysql://homeassistant:homeassistant123@core-mariadb/homeassistant?charset=utf8mb4
   purge_keep_days: 5
   commit_interval: 30
   auto_purge: true
