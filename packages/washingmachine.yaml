@@ -2,7 +2,7 @@
 template:
   binary_sensor: # Binary sensors
     - name: Vaskemaskin aktiv
-      delay_on: 
+      delay_on:
         seconds: 30
       delay_off:
         minutes: 2
@@ -13,20 +13,20 @@ template:
         {% else %}
           mdi:washing-machine-off
         {% endif %}'
-    - name: Mopp tilkoblet    
+    - name: Mopp tilkoblet
       state: "{{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'mop_attached') }}"
       device_class: connectivity
 
 ## Automations
 
-automation: 
+automation:
   - alias: Notify once when washing mashine is done.
     trigger:
       - platform: state
         entity_id: binary_sensor.vaskemaskin_aktiv
         to: "off"
     action:
-      - service: notify.mobile_app_iphone
+      - service: notify.mobile_app_erik_sin_iphone
         data:
           message: "Klesvasken er klar. Husk å ta ut."
           title: "Klesvasken er klar"
@@ -36,14 +36,14 @@ automation:
       - platform: state
         entity_id: binary_sensor.vaskemaskin_aktiv
         to: "off"
-    condition:  
+    condition:
       - condition: state # Døren til vaskerommet må være lukket.
         entity_id: binary_sensor.door_sensor_vaskerom_contact
         state: "off"
     action:
       - service: light.turn_on # Skrur på lyset innerst i gangen og setter det til fargen grønn.
         data:
-          entity_id: 
+          entity_id:
             - light.taklampe_1_gang_pare_1
             - light.taklampe_1_gang_pare_2
           color_name: green
@@ -58,12 +58,12 @@ automation:
     trigger:
       - platform: state
         entity_id: binary_sensor.door_sensor_vaskerom_contact
-        to: "on"      
+        to: "on"
     condition:
     action:
       - service: light.turn_on
         data:
-          entity_id: 
+          entity_id:
             - light.taklampe_1_gang_pare_1
             - light.taklampe_1_gang_pare_2
           profile: relax
