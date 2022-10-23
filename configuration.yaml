@@ -58,4 +58,3 @@ influxdb:
       - updater
     entities:
       - sun.sun
-#rawtest:
