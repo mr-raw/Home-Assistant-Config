@@ -263,7 +263,8 @@ cards:
                       [[[ return states['climate.vennolumsvegen_82'].attributes.fan_mode === 'Low' ]]]
                     color: green
                   - operator: default
-                    color: dark
+                    color: var(--card-background-color)
+
                 styles:
                   card:
                     - height: 50px
@@ -284,7 +285,7 @@ cards:
                       [[[ return states['climate.vennolumsvegen_82'].attributes.fan_mode === 'LowMid' ]]]
                     color: green
                   - operator: default
-                    color: dark
+                    color: var(--card-background-color)
                 styles:
                   card:
                     - height: 50px
@@ -305,7 +306,7 @@ cards:
                       [[[ return states['climate.vennolumsvegen_82'].attributes.fan_mode === 'Mid' ]]]
                     color: green
                   - operator: default
-                    color: dark
+                    color: var(--card-background-color)
                 styles:
                   card:
                     - height: 50px
@@ -326,7 +327,7 @@ cards:
                       [[[ return states['climate.vennolumsvegen_82'].attributes.fan_mode === 'HighMid' ]]]
                     color: green
                   - operator: default
-                    color: dark
+                    color: var(--card-background-color)
                 styles:
                   card:
                     - height: 50px
@@ -347,7 +348,7 @@ cards:
                       [[[ return states['climate.vennolumsvegen_82'].attributes.fan_mode === 'High' ]]]
                     color: green
                   - operator: default
-                    color: dark
+                    color: var(--card-background-color)
                 styles:
                   card:
                     - height: 50px
@@ -373,8 +374,12 @@ cards:
                     value: >
                       [[[ return states['input_boolean.dog_mode'].state == 'on' ]]]
                     color: green
+                  - operator: template
+                    value: >
+                      [[[ return states['input_boolean.dog_mode'].state == 'off' ]]]
+                    color: var(--card-background-color)
                   - operator: default
-                    color: dark
+                    color: var(--card-background-color)
               - type: custom:button-card
                 icon: mdi:car-seat-heater
                 enabled: false
@@ -382,6 +387,7 @@ cards:
                 tap_action:
                   action: call-service
                   service: script.turn_on
+                  haptic: "success"
                   service_data:
                     entity_id: script.toggle_preheat
                 styles:
@@ -390,7 +396,7 @@ cards:
                     - width: 75px
                 state:
                   - operator: default
-                    color: dark
+                    color: var(--card-background-color)
                   - operator: template
                     value: >
                       [[[ return states['binary_sensor.preheat_active'].state === 'on' ]]]
@@ -398,4 +404,4 @@ cards:
                   - operator: template
                     value: >
                       [[[ return states['binary_sensor.preheat_active'].state === 'off' ]]]
-                    color: red
+                    color: var(--card-background-color)
