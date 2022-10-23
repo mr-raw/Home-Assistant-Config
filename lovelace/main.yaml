@@ -65,9 +65,9 @@ cards:
   - type: vertical-stack
     cards:
       - type: weather-forecast
-        entity: weather.vennolumsvegen_82
+        entity: weather.vennolumsvegen_82_hourly
         show_forecast: true
-        secondary_info_attribute: precipitation
+        secondary_info_attribute: precipitation_probability
       - type: "custom:digital-clock"
         dateFormat:
           weekday: "short"
@@ -365,10 +365,6 @@ cards:
                     entity_id: input_boolean.dog_mode
                 show_state: true
                 label: "Dog Mode"
-                styles:
-                  card:
-                    - height: 75px
-                    - width: 75px
                 state:
                   - operator: template
                     value: >
@@ -380,9 +376,11 @@ cards:
                     color: var(--card-background-color)
                   - operator: default
                     color: var(--card-background-color)
+                styles:
+                  card:
+                    - height: 50px
               - type: custom:button-card
                 icon: mdi:car-seat-heater
-                enabled: false
                 color_type: card
                 tap_action:
                   action: call-service
@@ -390,10 +388,6 @@ cards:
                   haptic: "success"
                   service_data:
                     entity_id: script.toggle_preheat
-                styles:
-                  card:
-                    - height: 75px
-                    - width: 75px
                 state:
                   - operator: default
                     color: var(--card-background-color)
@@ -405,3 +399,40 @@ cards:
                     value: >
                       [[[ return states['binary_sensor.preheat_active'].state === 'off' ]]]
                     color: var(--card-background-color)
+                styles:
+                  card:
+                    - height: 50px
+              # The following are currently dummy buttons
+              - type: custom:button-card
+                icon: mdi:microsoft-xbox-controller-battery-medium
+                color_type: card
+                tap_action:
+                  haptic: "success"
+                state:
+                  - operator: default
+                    color: var(--card-background-color)
+                styles:
+                  card:
+                    - height: 50px
+              - type: custom:button-card
+                icon: mdi:content-save
+                color_type: card
+                tap_action:
+                  haptic: "success"
+                state:
+                  - operator: default
+                    color: var(--card-background-color)
+                styles:
+                  card:
+                    - height: 50px
+              - type: custom:button-card
+                icon: mdi:car-brake-fluid-level
+                color_type: card
+                tap_action:
+                  haptic: "success"
+                state:
+                  - operator: default
+                    color: var(--card-background-color)
+                styles:
+                  card:
+                    - height: 50px
