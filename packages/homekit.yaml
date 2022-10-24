@@ -1,6 +1,6 @@
-homekit: 
+homekit:
   - port: 21063
-    name: Vennolumsvegen 82
+    name: !secret my_address
     filter:
       include_entities:
         - binary_sensor.motion_sensor_trapp_occupancy
