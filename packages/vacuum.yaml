@@ -176,7 +176,7 @@ automation:
         state: "on"
     action:
       # Gi beskjed om at moppen må tas av
-      - service: notify.mobile_app_iphone
+      - service: notify.mobile_app_erik_sin_iphone
         data:
           message: Støvsuging ferdig. Mopp er tilkoblet. Støvsuger kjører til serviceposision
           title: Støvsugermopp er tilkoblet
