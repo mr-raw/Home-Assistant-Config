@@ -52,7 +52,7 @@ automation:
         data:
           flash: short
         target:
-          entity_id: light.lysstripe_kontor_erik
+          entity_id: light.lysstripe_kontor_ost
 
   - alias: Reset lights when door is opened
     trigger:
