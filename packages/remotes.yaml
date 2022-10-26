@@ -49,3 +49,15 @@ automation:
       - service: light.toggle
         target:
           entity_id: light.gang
+
+  - alias: Fjernkontrolltest
+    trigger:
+      - platform: event
+        event_type: zwave_js_value_notification
+        event_data:
+          node_id: 7
+          label: "Scene 003"
+          value_raw: 0
+    action:
+      - service: light.toggle
+        entity_id: light.soverom
