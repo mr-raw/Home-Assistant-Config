@@ -35,7 +35,7 @@ cards:
                 name: "VP Ute"
               - entity: sensor.vennolumsvegen_82_inside_temperature
                 name: "VP inne"
-              - entity: sensor.smart_implant_air_temperature_7
+              - entity: sensor.garasjeport_hoyre_air_temperature_7
                 name: "Garasje"
       - type: glance
         entities:
@@ -45,7 +45,7 @@ cards:
             name: "Soverom"
           - entity: sensor.temp_sensor_1_temperature
             name: "Kjøleskap"
-          - entity: sensor.multisensor_6_air_temperature
+          - entity: sensor.multisensor_gang_air_temperature
             name: "Gang"
           - entity: sensor.temp_sensor_vaskerom_temperature
             name: "Vaskerom"
@@ -57,7 +57,7 @@ cards:
             name: "Soverom"
           - entity: sensor.temp_sensor_1_humidity
             name: "Kjøleskap"
-          - entity: sensor.multisensor_6_humidity
+          - entity: sensor.multisensor_gang_humidity
             name: "Gang"
           - entity: sensor.temp_sensor_vaskerom_humidity
             name: "Vaskerom"
@@ -217,7 +217,7 @@ cards:
                 icon: mdi:shield-check
           - type: custom:button-card
             color_type: card
-            entity: binary_sensor.strips_mazw_access_control_window_door_is_open
+            entity: binary_sensor.dorsensor_veranda_access_control_window_door_is_open
             name: Veranda
             show_state: true
             state:

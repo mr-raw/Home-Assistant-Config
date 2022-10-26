@@ -4,14 +4,16 @@ cards:
   - type: custom:battery-state-card
     title: Z-Wave-enheter
     entities:
-      - entity: sensor.strips_mazw_battery_level
+      - entity: sensor.dorsensor_veranda_battery_level
         name: "Dørsensor veranda"
-      - entity: sensor.multisensor_6_battery_level
+      - entity: sensor.dorsensor_hovedinngang_battery_level
+        name: "Dørsensor hovedinngang"
+      - entity: sensor.multisensor_gang_battery_level
         name: "Multisensor gang nede"
-      - entity: sensor.soft_remote_battery_level
-        name: "Z-Wave fjernkontroll #1"
-      - entity: sensor.octan_remote_control_battery_level
-        name: "Z-Wave fjernkontroll #2"
+      - entity: sensor.fjernkontroll_hovedinngang_control_battery_level
+        name: "Z-Wave fjernkontroll Hovedinngang"
+      - entity: sensor.fjernkontroll_soverom_battery_level
+        name: "Z-Wave fjernkontroll Soverom"
 
   - type: custom:battery-state-card
     title: Philips Hue-enheter
