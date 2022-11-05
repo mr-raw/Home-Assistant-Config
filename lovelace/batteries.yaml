@@ -48,3 +48,11 @@ cards:
         name: "Røykvarsler 2"
       - entity: sensor.siren_1_battery
         name: "Sirene 1"
+
+  - type: "custom:battery-state-card"
+    title: "Apple enheter"
+    entities:
+      - entity: sensor.erik_sin_iphone_battery_level_2
+        name: "Eriks iPhone"
+      - entity: sensor.erik_sin_ipad_battery_level
+        name: "Eriks iPad"
