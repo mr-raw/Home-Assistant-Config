@@ -65,9 +65,10 @@ cards:
   - type: vertical-stack
     cards:
       - type: weather-forecast
+        name: "Timevarsel"
         entity: weather.vennolumsvegen_82_hourly
         show_forecast: true
-        secondary_info_attribute: precipitation_probability
+        secondary_info_attribute: wind_speed
       - type: "custom:digital-clock"
         dateFormat:
           weekday: "short"
