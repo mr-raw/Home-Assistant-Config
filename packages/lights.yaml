@@ -30,6 +30,11 @@ automation:
     action:
       - delay:
           minutes: 10
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: binary_sensor.multisensor_gang_home_security_motion_detection
+            state: "off"
       - service: light.turn_off
         target:
           entity_id:
