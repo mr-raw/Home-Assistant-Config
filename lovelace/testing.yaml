@@ -35,10 +35,3 @@ cards:
 
   - type: custom:posten-card
     entity: sensor.postendeliverydays
-
-  - type: custom:bar-card
-    entities:
-      - entity: sensor.jv32818_fuel_level
-      - entity: sensor.adblue_niva
-      - entity: sensor.jv32818_state_of_charge
-    title: "Test"
