@@ -16,6 +16,9 @@ cards:
       - binary_sensor.motion_sensor_trapp_occupancy
       - sensor.batteristatus
       - sensor.adblue_niva
+      - light.gang
+      - entity: timer.lights_downstairs
+        name: "Timer for lys nede"
 
   - type: history-graph
     title: Testgraf

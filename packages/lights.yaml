@@ -1,8 +1,10 @@
+### AUTOMATIONS ###
 automation:
-  - alias: Skru på lys innerst i gangen ved bevegelse
+  - alias: Skru på lys nede ved bevegelse
     trigger:
       - platform: state
         entity_id: binary_sensor.multisensor_gang_home_security_motion_detection
+        from: "off"
         to: "on"
     condition:
       - condition: state
@@ -12,38 +14,65 @@ automation:
       - service: light.turn_on
         target:
           entity_id:
-            - light.taklampe_1_gang_pare_1
-            - light.taklampe_1_gang_pare_2
-            - light.taklampe_2_gang_pare_1
-            - light.taklampe_2_gang_pare_2
-            - light.hue_go
+            - light.gang
+      - service: timer.start # Start or restart the timer
+        target:
+          entity_id: timer.lights_downstairs
 
-  - alias: Skru av lys innerst i gangen etter 10 minutter fra siste bevegelse
+  - alias: Skru på lys nede når hovedinngangsdøren åpnes
     trigger:
       - platform: state
-        entity_id: binary_sensor.multisensor_gang_home_security_motion_detection
-        to: "off"
+        entity_id: binary_sensor.dorsensor_hovedinngang_window_door_is_open
+        from: "off"
+        to: "on"
     condition:
       - condition: state
         entity_id: input_boolean.automate_lights
         state: "on"
     action:
-      - delay:
-          minutes: 10
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: binary_sensor.multisensor_gang_home_security_motion_detection
-            state: "off"
+      - service: light.turn_on
+        target:
+          entity_id:
+            - light.gang
+      - service: timer.start # Start or restart the timer
+        target:
+          entity_id: timer.lights_downstairs
+
+  - alias: Skru av lys nede når timeren har timet ut. # Forutser at det ikke er bevegelse og at døren er lukket.
+    trigger:
+      - platform: event
+        event_type: timer.finished
+        event_data:
+          entity_id: timer.lights_downstairs
+    condition:
+      - condition: state
+        entity_id: input_boolean.automate_lights
+        state: "on"
+    action:
       - service: light.turn_off
         target:
           entity_id:
-            - light.taklampe_1_gang_pare_1
-            - light.taklampe_1_gang_pare_2
-            - light.taklampe_2_gang_pare_1
-            - light.taklampe_2_gang_pare_2
-            - light.hue_go
+            - light.gang
+
+### INPUT BOOLEANS ###
 input_boolean:
   automate_lights:
     name: Lysautomasjoner
     icon: mdi:lightbulb
+
+### TIMERS ###
+timer:
+  lights_downstairs:
+    duration: "00:10:00"
+
+### LIGHT GROUP ###
+
+light:
+  - platform: group
+    name: "Lights Downstairs"
+    entities:
+      - light.taklampe_1_gang_pare_1
+      - light.taklampe_1_gang_pare_2
+      - light.taklampe_2_gang_pare_1
+      - light.taklampe_2_gang_pare_2
+      - light.hue_go
