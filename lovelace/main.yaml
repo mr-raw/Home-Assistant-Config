@@ -47,8 +47,8 @@ cards:
             name: "Kjøleskap"
           - entity: sensor.multisensor_gang_air_temperature
             name: "Gang"
-          #- entity: sensor.temp_sensor_vaskerom_temperature
-          #  name: "Vaskerom"
+          - entity: sensor.temp_sensor_vaskerom_temperature
+            name: "Vaskerom"
       - type: glance
         entities:
           - entity: sensor.netatmo_vennolumsvegen_82_inne_humidity
@@ -59,8 +59,8 @@ cards:
             name: "Kjøleskap"
           - entity: sensor.multisensor_gang_humidity
             name: "Gang"
-          #- entity: sensor.temp_sensor_vaskerom_humidity
-          #  name: "Vaskerom"
+          - entity: sensor.temp_sensor_vaskerom_humidity
+            name: "Vaskerom"
 
   - type: vertical-stack
     cards:
