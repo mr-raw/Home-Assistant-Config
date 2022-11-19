@@ -1,6 +1,6 @@
 automation:
   # Activated one hour after sunrise.
-  - id: day_cycle1666479159560
+  - id: day_cycle
     alias: Day mode
     trigger:
       - platform: sun

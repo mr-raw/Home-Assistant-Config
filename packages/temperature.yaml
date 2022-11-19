@@ -1,0 +1,50 @@
+### INPUT NUMBERS ###
+input_number:
+  temp_setpoint_night:
+    name: "Temperatur settpunkt natt"
+    icon: mdi:thermometer
+    min: 16
+    max: 30
+    initial: 18
+    step: 0.5
+    mode: box
+  temp_setpoint_day:
+    name: "Temperatur settpunkt dag"
+    icon: mdi:thermometer
+    min: 16
+    max: 30
+    initial: 18
+    step: 0.5
+    mode: box
+### AUTOMATIONS ###
+
+# set temperature when day/night cycle changes
+automation:
+  - id: night_mode_activated
+    alias: "Night Mode Temperature Activated"
+    trigger:
+      - platform: state
+        entity_id: input_boolean.night_mode
+        from: "off"
+        to: "on"
+    action:
+      - alias: "Set temperature to setpoint night"
+        service: climate.set_temperature
+        data:
+          temperature: "{{ states(input_number.temp_setpoint_night) | float }}"
+        target:
+          entity_id: climate.vennolumsvegen_82
+  - id: day_mode_activated
+    alias: "Day Mode Temperature Activated"
+    trigger:
+      - platform: state
+        entity_id: input_boolean.day_mode
+        from: "off"
+        to: "on"
+    action:
+      - alias: "Set temperature to setpoint day"
+        service: climate.set_temperature
+        data:
+          temperature: "{{ states(input_number.temp_setpoint_day) | float }}"
+        target:
+          entity_id: climate.vennolumsvegen_82
