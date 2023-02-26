@@ -74,19 +74,31 @@ cards:
       - type: custom:slider-entity-row
         entity: light.veggplugg_2
         toggle: true
+      - type: custom:slider-entity-row
+        entity: light.pendellampe_stue
+        toggle: true
 
   - type: entities
     title: Spisestue
     show_header_toggle: true
     entities:
-      - type: custom:slider-entity-row
-        entity: light.vinduslampe_spisestue
-        toggle: true
-      - type: custom:slider-entity-row
-        entity: light.lysstripe_spisestue
-        toggle: true
+      # - type: custom:slider-entity-row
+      #   entity: light.vinduslampe_spisestue
+      #   toggle: true
+      # - type: custom:slider-entity-row
+      #   entity: light.lysstripe_spisestue
+      #   toggle: true
       - type: custom:slider-entity-row
         entity: light.gulvlampe_spisestue
+        toggle: true
+      - type: custom:slider-entity-row
+        entity: light.bordlampe_spisestue
+        toggle: true
+      - type: custom:slider-entity-row
+        entity: light.pendellampe_nedover_spisestue
+        toggle: true
+      - type: custom:slider-entity-row
+        entity: light.pendellampe_oppover_spisestue
         toggle: true
 
   - type: entities

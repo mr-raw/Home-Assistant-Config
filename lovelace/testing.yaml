@@ -10,7 +10,8 @@ cards:
       - sensor.switch_meter_plugin_electric_consumed_w
       - sensor.multisensor_gang_illuminance
       - sensor.motion_sensor_trapp_illuminance_lux
-      - binary_sensor.dorsensor_veranda_access_control_window_door_is_open
+      - binary_sensor.binary_sensor.dorsensor_veranda_window_door_is_open
+      - binary_sensor.dorsensor_soverom_access_control_window_door_is_open
       - binary_sensor.door_sensor_vaskerom_contact
       - binary_sensor.multisensor_gang_home_security_motion_detection
       - binary_sensor.motion_sensor_trapp_occupancy

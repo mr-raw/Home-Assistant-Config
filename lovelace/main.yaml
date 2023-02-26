@@ -218,7 +218,19 @@ cards:
                 icon: mdi:shield-check
           - type: custom:button-card
             color_type: card
-            entity: binary_sensor.dorsensor_veranda_access_control_window_door_is_open
+            entity: binary_sensor.dorsensor_soverom_access_control_window_door_is_open
+            name: Soverom
+            show_state: true
+            state:
+              - value: "on"
+                color: red
+                icon: mdi:door-open
+              - value: "off"
+                icon: mdi:shield-check
+                color: green
+          - type: custom:button-card
+            color_type: card
+            entity: binary_sensor.dorsensor_veranda_window_door_is_open
             name: Veranda
             show_state: true
             state:
