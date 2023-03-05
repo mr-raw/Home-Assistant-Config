@@ -4,7 +4,7 @@ cards:
   - type: custom:xiaomi-vacuum-card
     name: Roborock S6
     vendor: xiaomi
-    entity: vacuum.xiaomi_vacuum_cleaner
+    entity: vacuum.roborock_s6
     image: /local/community/lovelace-xiaomi-vacuum-card/vacuum.png
     buttons: false
     attributes:
@@ -32,7 +32,7 @@ cards:
           action: call-service
           service: vacuum.start
           service_data:
-            entity_id: vacuum.xiaomi_vacuum_cleaner
+            entity_id: vacuum.roborock_s6
       - type: button
         name: Avslutt rengjøring
         icon: mdi:stop
@@ -42,7 +42,7 @@ cards:
           action: call-service
           service: vacuum.stop
           service_data:
-            entity_id: vacuum.xiaomi_vacuum_cleaner
+            entity_id: vacuum.roborock_s6
       - type: button
         name: Gå til docking
         icon: mdi:home
@@ -52,7 +52,7 @@ cards:
           action: call-service
           service: vacuum.return_to_base
           service_data:
-            entity_id: vacuum.xiaomi_vacuum_cleaner
+            entity_id: vacuum.roborock_s6
       - type: button
         name: Gå til serviceposisjon
         icon: mdi:toolbox-outline
@@ -62,6 +62,6 @@ cards:
           action: call-service
           service: xiaomi_miio.vacuum_goto
           service_data:
-            entity_id: vacuum.xiaomi_vacuum_cleaner
+            entity_id: vacuum.roborock_s6
             x_coord: 24500
             y_coord: 23500
