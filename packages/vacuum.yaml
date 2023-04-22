@@ -1,3 +1,10 @@
+### Sensors
+template:
+  - binary_sensor:
+      - name: Mopp tilkoblet
+        state: "{{ state('binary_sensor.roborock_s6_mop_attached', 'mop_attached') }}"
+        device_class: connectivity
+        
 ### Input helpers
 input_boolean:
   daily_vacuum:
@@ -50,7 +57,7 @@ automation:
           - mon
     action:
       - service: vacuum.start
-        entity_id: vacuum.xiaomi_vacuum_cleaner
+        entity_id: vacuum.roborock_s6
 
   - alias: Daily vacuum Tuesday
     trigger:
@@ -68,7 +75,7 @@ automation:
           - tue
     action:
       - service: vacuum.start
-        entity_id: vacuum.xiaomi_vacuum_cleaner
+        entity_id: vacuum.roborock_s6
 
   - alias: Daily vacuum Wednesday
     trigger:
@@ -86,7 +93,7 @@ automation:
           - wed
     action:
       - service: vacuum.start
-        entity_id: vacuum.xiaomi_vacuum_cleaner
+        entity_id: vacuum.roborock_s6
 
   - alias: Daily vacuum Thursday
     trigger:
@@ -104,7 +111,7 @@ automation:
           - thu
     action:
       - service: vacuum.start
-        entity_id: vacuum.xiaomi_vacuum_cleaner
+        entity_id: vacuum.roborock_s6
 
   - alias: Daily vacuum Friday
     trigger:
@@ -122,7 +129,7 @@ automation:
           - fri
     action:
       - service: vacuum.start
-        entity_id: vacuum.xiaomi_vacuum_cleaner
+        entity_id: vacuum.roborock_s6
 
   - alias: Daily vacuum Saturday
     trigger:
@@ -140,7 +147,7 @@ automation:
           - sat
     action:
       - service: vacuum.start
-        entity_id: vacuum.xiaomi_vacuum_cleaner
+        entity_id: vacuum.roborock_s6
 
   - alias: Daily vacuum Sunday
     trigger:
@@ -158,21 +165,21 @@ automation:
           - sun
     action:
       - service: vacuum.start
-        entity_id: vacuum.xiaomi_vacuum_cleaner
+        entity_id: vacuum.roborock_s6
 
   # Lag en automasjon som sender et varsel når støvsuging er ferdig og mopp er tilkoblet.
   - alias: Alert when mopping is finished and mop is attached. Also go to service position
     trigger:
       # Statusen til støvsugeren blir endret til "returning"
       - platform: state
-        entity_id: vacuum.xiaomi_vacuum_cleaner
+        entity_id: vacuum.roborock_s6
         from: "returning"
         to: "docked"
     condition:
       # Moppen må være koblet på.
       # 11.06.22: Har endret til korret entity_id
       - condition: state
-        entity_id: binary_sensor.xiaomi_vacuum_cleaner_mop_attached
+        entity_id: binary_sensor.roborock_s6_mop_attached
         state: "on"
     action:
       # Gi beskjed om at moppen må tas av
@@ -183,7 +190,7 @@ automation:
       # Gå til serviceposisjon
       - service: xiaomi_miio.vacuum_goto
         data:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
+          entity_id: vacuum.roborock_s6
           x_coord: 24500
           y_coord: 23500
       # Gi annen visuell beskjed. Blink lys?

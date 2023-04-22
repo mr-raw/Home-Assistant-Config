@@ -3,24 +3,13 @@ automation:
   - alias: Skru på lys nede ved bevegelse
     trigger:
       - platform: state
-        entity_id: binary_sensor.multisensor_gang_home_security_motion_detection
+        entity_id: binary_sensor.multisensor_gang_home_security_motion_detection # The sensor downstairs
         from: "off"
         to: "on"
-    condition:
-      - condition: state
-        entity_id: input_boolean.automate_lights
-        state: "on"
-    action:
-      - service: light.turn_on
-        target:
-          entity_id:
-            - light.gang
-      - service: timer.start # Start or restart the timer
-        target:
-          entity_id: timer.lights_downstairs
-
-  - alias: Skru på lys nede når hovedinngangsdøren åpnes
-    trigger:
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_trapp_occupancy # The sensor in the stairs
+        from: "off"
+        to: "on"
       - platform: state
         entity_id: binary_sensor.dorsensor_hovedinngang_window_door_is_open
         from: "off"
@@ -66,7 +55,6 @@ timer:
     duration: "00:10:00"
 
 ### LIGHT GROUP ###
-
 light:
   - platform: group
     name: "Lights Downstairs"

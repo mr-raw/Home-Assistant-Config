@@ -6,7 +6,7 @@ automation:
       - platform: sun
         event: sunrise
         offset: "01:00:00"
-    condition:
+    condition: []
     action:
       - alias: "Set day mode"
         service: input_boolean.turn_on
@@ -24,7 +24,7 @@ automation:
       - platform: sun
         event: sunset
         offset: "-00:30:00"
-    condition:
+    condition: []
     action:
       - alias: "Set night mode"
         service: input_boolean.turn_on

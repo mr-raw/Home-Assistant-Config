@@ -1,64 +1,23 @@
-# sensor:
-#   - platform: scrape
-#     name: "HRA Day Of Next Pickup"
-#     resource: "https://hra.no/tommekalender/?query=Vennolumsvegen+82%2C+2750+GRAN&agreement=16ab0b75-55c9-4fe8-9857-630508265bec"
-#     select: "#calendar-content > div:nth-child(1) > div.col.white-bg.card > div > div:nth-child(1) > div > div.text-center.col-12.col-md-2 > strong > span.day.d-md-block.d-inline"
-#     scan_interval: 86400
-#   - platform: scrape
-#     name: "HRA Date Of Next Pickup"
-#     resource: "https://hra.no/tommekalender/?query=Vennolumsvegen+82%2C+2750+GRAN&agreement=16ab0b75-55c9-4fe8-9857-630508265bec"
-#     select: "#calendar-content > div:nth-child(1) > div.col.white-bg.card > div > div:nth-child(1) > div > div.text-center.col-12.col-md-2 > strong > span.date.d-md-block.d-inline"
-#     value_template: "{{ as_timestamp(strptime(value + ' ' + now().year | string, '%d. %b %Y')) | timestamp_local }}"
-#     scan_interval: 86400
-#   - platform: scrape    
-#     name: "HRA Pickup Fraction 1"
-#     resource: "https://hra.no/tommekalender/?query=Vennolumsvegen+82%2C+2750+GRAN&agreement=16ab0b75-55c9-4fe8-9857-630508265bec"
-#     select: "#calendar-content > div:nth-child(1) > div.col.white-bg.card > div > div:nth-child(1) > div > div:nth-child(2) > div"
-#     scan_interval: 86400
-#   - platform: scrape    
-#     name: "HRA Pickup Fraction 2"
-#     resource: "https://hra.no/tommekalender/?query=Vennolumsvegen+82%2C+2750+GRAN&agreement=16ab0b75-55c9-4fe8-9857-630508265bec"
-#     select: "#calendar-content > div:nth-child(1) > div.col.white-bg.card > div > div:nth-child(1) > div > div:nth-child(3) > div"
-#     scan_interval: 86400
-#   - platform: scrape
-#     resource: "https://hra.no/tommekalender/?query=Vennolumsvegen+82%2C+2750+GRAN&agreement=16ab0b75-55c9-4fe8-9857-630508265bec"
-#     select: "#calendar-content > div:nth-child(1) > div.col.white-bg.card > div > div:nth-child(1) > div > div:nth-child(4) > div"
-#     scan_interval: 86400
-#   - platform: scrape    
-#     name: "HRA Pickup Fraction 4"
-#     resource: "https://hra.no/tommekalender/?query=Vennolumsvegen+82%2C+2750+GRAN&agreement=16ab0b75-55c9-4fe8-9857-630508265bec"
-#     select: "#calendar-content > div:nth-child(1) > div.col.white-bg.card > div > div:nth-child(1) > div > div:nth-child(5) > div"
-#     scan_interval: 86400
-#   - platform: scrape
-#     name: "HRA Pickup Fraction 5" # I think this always will be 'unknown'
-#     resource: "https://hra.no/tommekalender/?query=Vennolumsvegen+82%2C+2750+GRAN&agreement=16ab0b75-55c9-4fe8-9857-630508265bec"
-#     select: "#calendar-content > div:nth-child(1) > div.col.white-bg.card > div > div:nth-child(1) > div > div:nth-child(6) > div"
-#     scan_interval: 86400
-# template:
-#   - sensor:
-#     - name: HRA Statusrapport
-#       state: >-
-#               "Neste avfallshenting er {{ states.sensor.hra_day_of_next_pickup.state.lower() }} den {{ as_timestamp(states.sensor.hra_date_of_next_pickup.state) | timestamp_custom('%d. %b') }}. Følgende fraksjoner blir hentet:
-#               {%- if is_state('sensor.hra_pickup_fraction_1', 'unknown') -%}
-#               {%- else -%}
-#                 {{ " " + states.sensor.hra_pickup_fraction_1.state.lower().replace(' og', ',') -}}
-#               {%- endif -%}
-#               {%- if is_state('sensor.hra_pickup_fraction_2', 'unknown') -%}
-#               {%- else -%}
-#               , {{ states.sensor.hra_pickup_fraction_2.state.lower().replace(' og', ',') -}}
-#               {%- endif -%}
-#               {%- if is_state('sensor.hra_pickup_fraction_3', 'unknown') -%}
-#               {%- else -%}
-#               , {{ states.sensor.hra_pickup_fraction_3.state.lower().replace(' og', ',') -}}
-#               {%- endif -%}
-#               {%- if is_state('sensor.hra_pickup_fraction_4', 'unknown') -%}
-#               .
-#               {%- else -%}
-#               , {{ states.sensor.hra_pickup_fraction_4.state.lower().replace(' og', ',') -}}
-#               {%- endif -%}
-#               {%- if is_state('sensor.hra_pickup_fraction_5', 'unknown') -%}
-#               .
-#               {%- else -%}
-#               og {{ states.sensor.hra_pickup_fraction_5.state.lower().replace(' og', ',') -}}
-#               {%- endif -%}"
+automation:
+  - alias: Notify Day Before Matavfall
+    description: Sends a notification at 18:00 the day before the date specified in sensor.matavfall
+    trigger:
+      - platform: time
+        at: "18:00:00"
+    condition:
+      - condition: template
+        value_template: "{{ (as_timestamp(now()) + 86400)|timestamp_custom('%Y-%m-%d') == state_attr('sensor.matavfall', 'date') }}"
+    action:
+      - service: notify.mobile_app_erik_sin_iphone
+        data:
+          message: "Reminder: Matavfall pickup is tomorrow."
+          title: "Matavfall Pickup Reminder"
+    mode: single
 
+template:
+  - sensor:
+      - name: "Days Until Matavfall"
+        state: >
+          {% set matavfall_date = as_timestamp(states('sensor.matavfall')) %}
+          {% set days_until = ((matavfall_date - as_timestamp(now())) // 86400)|round %}
+          In {{ days_until }} days

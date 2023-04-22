@@ -8,3 +8,10 @@ cards:
         name: Temperatur 3d-printer
       - entity: sensor.temp_sensor_3d_printer_humidity
         name: Luftfuktighet 3d-printer
+      - entity: sensor.octoprint_job_percentage
+        name: Prosent ferdig
+  - show_state: true
+    show_name: true
+    camera_view: live
+    type: picture-entity
+    entity: camera.octoprint_camera

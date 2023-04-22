@@ -35,8 +35,8 @@ cards:
                 name: "VP Ute"
               - entity: sensor.vennolumsvegen_82_inside_temperature
                 name: "VP inne"
-              - entity: sensor.garasjeport_hoyre_air_temperature_7
-                name: "Garasje"
+              # - entity: sensor.garasjeport_hoyre_air_temperature_7
+              #   name: "Garasje"
       - type: glance
         entities:
           - entity: sensor.netatmo_vennolumsvegen_82_inne_temperature
@@ -150,7 +150,6 @@ cards:
             name: Dag
             tap_action:
               action: toggle
-
       - type: horizontal-stack
         cards:
           - type: custom:button-card
@@ -166,13 +165,16 @@ cards:
             name: Mercedes
             show_state: true
             state:
-              - value: unlocked
+              - value: "unlocked"
+                state_display: "Ulåst"
                 icon: mdi:car-door
                 color: red
                 styles:
                   card:
                     - animation: blink 2s ease infinite
               - operator: default
+                value: "locked"
+                state_display: "Låst"
                 color: green
                 icon: mdi:shield-check
           - type: custom:button-card
@@ -189,12 +191,14 @@ cards:
             show_state: true
             state:
               - value: unlocked
+                state_display: "Ulåst"
                 icon: mdi:door-open
                 color: red
                 styles:
                   card:
                     - animation: blink 2s ease infinite
               - operator: default
+                state_display: "Låst"
                 color: green
                 icon: mdi:shield-check
           - type: custom:button-card
@@ -209,11 +213,14 @@ cards:
             name: Garasje
             show_state: true
             state:
-              - value: open
+              - value: "open"
+                state_display: "Åpen"
                 icon: mdi:garage-open
                 color: red
               - animation: blink 2s ease infinite
               - operator: default
+                value: "closed"
+                state_display: "Lukket"
                 color: green
                 icon: mdi:shield-check
           - type: custom:button-card
@@ -223,9 +230,11 @@ cards:
             show_state: true
             state:
               - value: "on"
+                state_display: "Åpen"
                 color: red
                 icon: mdi:door-open
               - value: "off"
+                state_display: "Lukket"
                 icon: mdi:shield-check
                 color: green
           - type: custom:button-card
@@ -235,9 +244,11 @@ cards:
             show_state: true
             state:
               - value: "on"
+                state_display: "Åpen"
                 color: red
                 icon: mdi:door-open
               - value: "off"
+                state_display: "Lukket"
                 icon: mdi:shield-check
                 color: green
       - type: vertical-stack

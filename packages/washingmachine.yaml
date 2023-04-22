@@ -1,24 +1,26 @@
 ## Sensors
+
+sensor:
+  - platform: statistics
+    name: "Washing Machine Average"
+    unique_id: vennolumsvegen_82_washing_machine_average
+    entity_id: sensor.switch_meter_plugin_electric_consumed_w
+    sampling_size: 10
+    state_characteristic: mean
+    max_age:
+      minutes: 1
+
 template:
-  binary_sensor: # Binary sensors
-    - name: Vaskemaskin aktiv
-      delay_on:
-        seconds: 30
-      delay_off:
-        minutes: 2
-      state: "{{ states('sensor.switch_meter_plugin_electric_consumed_w') | float(default=0.0) > 5.0}}"
-      icon: >-
-        {% if states('sensor.switch_meter_plugin_electric_consumed_w') | float(default=0.0) > 5.0 %}
-          mdi:washing-machine
-        {% else %}
-          mdi:washing-machine-off
-        {% endif %}'
-    - name: Mopp tilkoblet
-      state: "{{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'mop_attached') }}"
-      device_class: connectivity
+  - binary_sensor:
+      - name: "Vaskemaskin Aktiv"
+        unique_id: vennolumsvegen_82_washing_machine_active
+        delay_on:
+          seconds: 30
+        delay_off:
+          minutes: 2
+        state: "{{ states('sensor.washing_machine_average') | float(default=0.0) > 5.0 }}" # Added so that the the automation uses the average power consumed, to ignore small spikes.
 
 ## Automations
-
 automation:
   - alias: Notify once when washing mashine is done.
     trigger:
@@ -59,7 +61,7 @@ automation:
       - platform: state
         entity_id: binary_sensor.door_sensor_vaskerom_contact
         to: "on"
-    condition:
+    condition: []
     action:
       - service: light.turn_on
         data:

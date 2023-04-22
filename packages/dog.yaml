@@ -30,6 +30,7 @@ automation:
         to: "off"
     action:
       - service: script.sonos_say_nabu
+
         data:
           sonos_entity: media_player.sonos_move
           message: "Hundemodus er deaktivert"
