@@ -288,7 +288,6 @@ cards:
                     color: green
                   - operator: default
                     color: var(--card-background-color)
-
                 styles:
                   card:
                     - height: 50px
