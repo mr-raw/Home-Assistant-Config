@@ -1,0 +1,40 @@
+rest:
+  - scan_interval: 600
+    method: GET
+    headers:
+      Content-Type: application/json
+      X-API-KEY: 24ACBFDD74F54688B46D425104009AD9FC48CEBC-A
+      User-Agent: Drivstoffappen/1.3.8 (com.raskebiler.drivstoff.appen; build:130; iOS 15.2.1) Alamofire/5.4.4
+      Accept-Language: nb-NO;q=1.0, en-GB;q=0.9
+      Accept-Encoding: br;q=1.0, gzip;q=0.9, deflate;q=0.8
+      Connection: keep-alive
+    resource: https://api.drivstoffappen.no/api/stations?stationType=0&countryCode=NO
+    sensor:
+      - name: "Shell Brandbu (D)"
+        json_attributes_path: "$..[?(@.discountInfo=='Shell Automat Brandbu')]"
+        value_template: "{{ (value_json | selectattr('discountInfo', 'eq', 'Shell Automat Brandbu') | first).stationDetails | selectattr('type', 'eq', 'D') | map(attribute='price') | first or 'unavailable' }}"
+        force_update: true
+        json_attributes:
+          - "lastUpdated"
+          - "location"
+      - name: "Shell Gran (D)"
+        json_attributes_path: "$..[?(@.discountInfo=='Shell Gran')]"
+        value_template: "{{ (value_json | selectattr('discountInfo', 'eq', 'Shell Gran') | first).stationDetails | selectattr('type', 'eq', 'D') | map(attribute='price') | first or 'unavailable' }}"
+        force_update: true
+        json_attributes:
+          - "lastUpdated"
+          - "location"
+      - name: "Esso Jaren (D)"
+        json_attributes_path: "$..[?(@.discountInfo=='Esso Jaren')]"
+        value_template: "{{ (value_json | selectattr('discountInfo', 'eq', 'Esso Jaren') | first).stationDetails | selectattr('type', 'eq', 'D') | map(attribute='price') | first or 'unavailable' }}"
+        force_update: true
+        json_attributes:
+          - "lastUpdated"
+          - "location"
+      # - name: "Circle K Brandbu"
+      #   json_attributes_path: "$..[?(@.discountInfo=='Circle K Brandbu')]"
+      #   value_template: "{{ (value_json | selectattr('discountInfo', 'eq', 'Circle K Brandbu') | first).stationDetails | selectattr('type', 'eq', 'D') | map(attribute='price') | first or 'unavailable' }}"
+      #   force_update: true
+      #   json_attributes:
+      #     - "lastUpdated"
+      #     - "location"
