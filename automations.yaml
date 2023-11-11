@@ -1,0 +1,9 @@
+- id: '1695854095611'
+  alias: leaving checkpoint 1
+  description: ''
+  use_blueprint:
+    path: homeassistant/notify_leaving_zone.yaml
+    input:
+      person_entity: person.erik_raae
+      zone_entity: zone.checkpoint1
+      notify_device: 994983cffb5915cba6569dd833417f89
