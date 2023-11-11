@@ -18,7 +18,7 @@ sonos_say_nabu:
         options:
           gender: female
         language: nb-NO
-    - delay: "{{ delay }}"
+    #- delay: "{{ delay }}"
     - service: sonos.restore
       data:
         entity_id: "{{ sonos_entity }}"
