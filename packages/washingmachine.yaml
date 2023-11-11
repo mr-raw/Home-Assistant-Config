@@ -6,7 +6,7 @@ sensor:
     unique_id: vennolumsvegen_82_washing_machine_average
     entity_id: sensor.switch_meter_plugin_electric_consumed_w
     sampling_size: 10
-    state_characteristic: mean
+    state_characteristic: median
     max_age:
       minutes: 1
 
