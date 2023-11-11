@@ -1,10 +1,10 @@
 ### Sensors
-template:
-  - binary_sensor:
-      - name: Mopp tilkoblet
-        state: "{{ state('binary_sensor.roborock_s6_mop_attached', 'mop_attached') }}"
-        device_class: connectivity
-        
+# template:
+#   - binary_sensor:
+#       - name: Mopp tilkoblet
+#         state: "{{ state('binary_sensor.', 'mop_attached') }}"
+#         device_class: connectivity
+
 ### Input helpers
 input_boolean:
   daily_vacuum:
