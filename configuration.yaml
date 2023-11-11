@@ -10,9 +10,6 @@ homeassistant:
   # customize: !include customize.yaml
   packages: !include_dir_named packages/
 
-# Discovery of devices ....
-discovery:
-
 # Lovelace UI Config
 lovelace:
   mode: yaml
@@ -27,7 +24,9 @@ logger:
   default: warning
   logs:
     homeassistant.core: warning
-    # homeassistant.components.xiaomi_miio: debug
+    # homeassistant.components.met: debug
+    # custom_components.hra_recycling: debug
+    # homeassistant.components.tibber: debug
 
 recorder:
   db_url: !secret db_url
