@@ -1,23 +1,28 @@
 automation:
-  - alias: Notify Day Before Matavfall
-    description: Sends a notification at 18:00 the day before the date specified in sensor.matavfall
+  - alias: Notify Day Before Restavfall
+    description: Sends a notification at 18:00 the day before the date specified in sensor.restavfall
     trigger:
       - platform: time
         at: "18:00:00"
     condition:
       - condition: template
-        value_template: "{{ (as_timestamp(now()) + 86400)|timestamp_custom('%Y-%m-%d') == state_attr('sensor.matavfall', 'date') }}"
+        value_template: "{{ (as_timestamp(now()) + 86400)|timestamp_custom('%Y-%m-%d') == states('sensor.restavfall')[0:10] }}"
     action:
       - service: notify.mobile_app_erik_sin_iphone
         data:
-          message: "Reminder: Matavfall pickup is tomorrow."
-          title: "Matavfall Pickup Reminder"
+          message: "Reminder: Garbage pickup is tomorrow."
+          title: "Garbage Pickup Reminder"
     mode: single
 
 template:
   - sensor:
-      - name: "Days Until Matavfall"
+      - name: "Days Until Garbage Pickup"
         state: >
-          {% set matavfall_date = as_timestamp(states('sensor.matavfall')) %}
-          {% set days_until = ((matavfall_date - as_timestamp(now())) // 86400)|round %}
-          In {{ days_until }} days
+          {% set garbage_pickup_date_str = states('sensor.restavfall') %}
+          {% if garbage_pickup_date_str != 'unavailable' %}
+            {% set garbage_pickup_date = as_timestamp(garbage_pickup_date_str) %}
+            {% set days_until = ((garbage_pickup_date - as_timestamp(now())) // 86400)|round %}
+            In {{ days_until }} days
+          {% else %}
+            Information not available
+          {% endif %}
