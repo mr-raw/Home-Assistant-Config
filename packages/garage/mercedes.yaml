@@ -1,47 +1,46 @@
 template:
-- sensor: # Template sensors  
-    - name: Kilometerstand
-      icon: mdi:car-cruise-control
-      state: "{{ states('sensor.jv32818_odometer') }}"
-      unit_of_measurement: "km"
-    - name: Drivstoffnivå
-      unit_of_measurement: "%"
-      state: "{{ states('sensor.jv32818_fuel_level') }}"
-    - name: Adblue-nivå
-      unit_of_measurement: "%"
-      state: "{{ state_attr('sensor.jv32818_fuel_level', 'tankLevelAdBlue') }}"
-      device_class: signal_strength
-    - name: Dager til service      
-      unit_of_measurement: "dager"
-      state: "{{ state_attr('sensor.jv32818_odometer', 'serviceintervaldays') }}"
-    - name: Batteristatus
-      state: "{{ state_attr('sensor.jv32818_range_electric', 'soc') }}"
-      device_class: battery
-      unit_of_measurement: "%"
-- binary_sensor:
-    - name: preheat_active
-      state: "{{ state_attr('sensor.jv32818_range_electric', 'precondNow') }}"
-      device_class: heat
+  - sensor: # Template sensors
+      # - name: Kilometerstand
+      #   icon: mdi:car-cruise-control
+      #   state: "{{ states('sensor.jv32818_odometer') }}"
+      #   unit_of_measurement: "km"
+      # - name: Drivstoffnivå
+      #   unit_of_measurement: "%"
+      #   state: "{{ states('sensor.jv32818_fuel_level') }}"
+      # - name: Adblue-nivå
+      #   unit_of_measurement: "%"
+      #   state: "{{ state_attr('sensor.jv32818_fuel_level', 'tankLevelAdBlue') }}"
+      - name: Dager til service
+        unit_of_measurement: "dager"
+        state: "{{ state_attr('sensor.jv32818_odometer', 'serviceintervaldays') }}"
+      - name: Batteristatus
+        state: "{{ state_attr('sensor.jv32818_range_electric', 'soc') }}"
+        device_class: battery
+        unit_of_measurement: "%"
+  - binary_sensor:
+      - name: preheat_active
+        state: "{{ state_attr('sensor.jv32818_range_electric', 'precondNow') }}"
+        device_class: heat
 
 script:
   toggle_preheat:
     alias: "Toggle Preheat"
     sequence:
-    - choose:
-      - conditions:
-          - condition: state
-            entity_id: binary_sensor.preheat_active
-            state: "on"
-        sequence:
-          - service: mbapi2020.preheat_stop
-            data: 
-              vin: !secret mercedes_vin
-    - choose:
-      - conditions:
-          - condition: state
-            entity_id: binary_sensor.preheat_active
-            state: "off"
-        sequence:
-          - service: mbapi2020.preheat_start
-            data: 
-              vin: !secret mercedes_vin
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: binary_sensor.preheat_active
+                state: "on"
+            sequence:
+              - service: mbapi2020.preheat_stop
+                data:
+                  vin: !secret mercedes_vin
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: binary_sensor.preheat_active
+                state: "off"
+            sequence:
+              - service: mbapi2020.preheat_start
+                data:
+                  vin: !secret mercedes_vin
