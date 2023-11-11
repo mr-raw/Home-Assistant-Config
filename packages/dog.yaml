@@ -11,8 +11,8 @@ automation:
           sonos_entity: media_player.sonos_move
           message: "Hundemodus er aktivert."
           volume: 0.5
-      - delay:
-          seconds: 1
+      # - delay:
+      #     seconds: 1
       - service: media_player.select_source
         target:
           entity_id: media_player.sonos_move
@@ -30,13 +30,12 @@ automation:
         to: "off"
     action:
       - service: script.sonos_say_nabu
-
         data:
           sonos_entity: media_player.sonos_move
           message: "Hundemodus er deaktivert"
           volume: 0.5
-      - delay:
-          seconds: 3
+      # - delay:
+      #     seconds: 3
       - service: media_player.media_stop
         target:
           entity_id: media_player.sonos_move
