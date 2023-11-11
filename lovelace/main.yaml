@@ -35,8 +35,8 @@ cards:
                 name: "VP Ute"
               - entity: sensor.vennolumsvegen_82_inside_temperature
                 name: "VP inne"
-              # - entity: sensor.garasjeport_hoyre_air_temperature_7
-              #   name: "Garasje"
+              - entity: sensor.garagedoor_right_temperature
+                name: "Garasje"
       - type: glance
         entities:
           - entity: sensor.netatmo_vennolumsvegen_82_inne_temperature
@@ -65,8 +65,9 @@ cards:
   - type: vertical-stack
     cards:
       - type: weather-forecast
-        name: "Timevarsel"
-        entity: weather.vennolumsvegen_82_hourly
+        name: "Værvarsel"
+        entity: weather.forecast_vennolumsvegen_82
+        #entity: weather.vennolumsvegen_82_hourly
         show_forecast: true
         secondary_info_attribute: wind_speed
       - type: "custom:digital-clock"
@@ -103,7 +104,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: gauge
-            entity: sensor.power_vennolumsvegen_82
+            entity: sensor.power_hjem
             needle: true
             name: "Sanntidsforbruk"
             min: 0
@@ -113,7 +114,7 @@ cards:
               yellow: 3000
               red: 5000
           - type: gauge
-            entity: sensor.electricity_price_vennolumsvegen_82
+            entity: sensor.electricity_price_hjem
             needle: true
             name: "Strømpris"
             min: 0.01
@@ -264,7 +265,10 @@ cards:
             control:
               hvac:
                 heat_cool: false
-                heat: true
+                heat:
+                  name: "Varme"
+                cool:
+                  name: "Kjøling"
                 dry: false
                 fan_only: false
                 "off": false
@@ -459,3 +463,11 @@ cards:
                 styles:
                   card:
                     - height: 50px
+
+          - type: entities
+            entities:
+              # - sensor.circle_k_brandbu
+              - sensor.esso_jaren_d
+              - sensor.shell_brandbu_d
+              - sensor.shell_gran_d
+            title: Drivstoffpriser
