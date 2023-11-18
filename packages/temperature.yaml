@@ -5,7 +5,7 @@ input_number:
     icon: mdi:thermometer
     min: 16
     max: 30
-    initial: 16
+    initial: 20
     step: 1
     mode: box
   temp_setpoint_day:
@@ -13,7 +13,7 @@ input_number:
     icon: mdi:thermometer
     min: 16
     max: 30
-    initial: 16
+    initial: 20
     step: 1
     mode: box
 
